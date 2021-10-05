@@ -2,7 +2,7 @@ import chai from 'chai';
 import RelysiaSDK from '../src/relysia-sdk.js';
 const expect = chai.expect;
 
-describe('RelysiaSDK module test', function() {
+describe('RelysiaSDK Auth and Wallet Module Test', function() {
   this.timeout(10000);
   let relysiaSDK;
 

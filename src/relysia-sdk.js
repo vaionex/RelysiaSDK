@@ -5,16 +5,11 @@ import validator from './validator.js';
 class RelysiaSDK {
   constructor(config) {
     this.authToken = config && config.authToken;
-    this.serviceId = config && config.serviceId;
     this.validator = validator;
   }
 
   setAuthToken(token) {
     this.authToken = token;
-  }
-
-  setServiceId(serviceId) {
-    this.serviceId = serviceId;
   }
 
   async auth(opts) {
@@ -192,6 +187,66 @@ class RelysiaSDK {
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
+  }
+
+  async URI(opts) {
+    await this.validator.URI(opts);
+    const url = `${baseURL}/v1/URI`;
+    const headers = {};
+    headers.accept = 'application/json';
+    headers.uri = opts.uri;
+    const resp = await Fetch('get', url, headers);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  async send(opts) {
+    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    await this.validator.send(opts);
+    const url = `${baseURL}/v1/send`;
+    const headers = {};
+    headers.accept = 'application/json';
+    headers.authToken = this.authToken;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.walletID) headers.walletID = opts.walletID;
+    const resp = await Fetch('post', url, headers, opts.data);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  async purchase(opts) {
+    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    await this.validator.send(opts);
+    const url = `${baseURL}/v1/purchase`;
+    const headers = {};
+    headers.accept = 'application/json';
+    headers.authToken = this.authToken;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.walletID) headers.walletID = opts.walletID;
+    const resp = await Fetch('post', url, headers, opts.data);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  async pay(opts) {
+    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    await this.validator.pay(opts);
+    const url = `${baseURL}/v1/pay`;
+    const headers = {};
+    headers.accept = 'application/json';
+    headers.authToken = this.authToken;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.walletID) headers.walletID = opts.walletID;
+    const resp = await Fetch('post', url, headers, opts.data);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  async feeMetricsBeta() {
+    const url = `${baseURL}/v1/feeMetricsBeta`;
+    const headers = {};
+    headers.accept = '*/*';
+    await Fetch('get', url, headers);
   }
 }
 

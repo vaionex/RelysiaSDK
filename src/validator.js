@@ -95,5 +95,42 @@ validator.currencyConversion = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.URI = async (opts) => {
+  const schema = Joi.object({
+    uri: Joi.string().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
+validator.send = async (opts) => {
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+    walletID: Joi.string().allow('', null),
+    data: Joi.object().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
+validator.purchase = async (opts) => {
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+    walletID: Joi.string().allow('', null),
+    data: Joi.object({
+      dataArray: Joi.array().min(1),
+      tokenId: Joi.string().allow('', null),
+    }).required(),
+  });
+  await schema.validateAsync(opts);
+};
+
+validator.pay = async (opts) => {
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+    walletID: Joi.string().allow('', null),
+    data: Joi.object().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
 export default validator;
 
