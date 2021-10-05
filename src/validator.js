@@ -132,5 +132,28 @@ validator.pay = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.issue = async (opts) => {
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+    protocol: Joi.string().allow('', null),
+    data: Joi.object().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
+validator.tokenDetails = async (opts) => {
+  const schema = Joi.object({
+    tokenID: Joi.string().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
+validator.tokensCount = async (opts) => {
+  const schema = Joi.object({
+    address: Joi.string().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
 export default validator;
 
