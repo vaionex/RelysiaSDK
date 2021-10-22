@@ -4,6 +4,7 @@ const validator = {};
 
 validator.auth = async (opts) => {
   const schema = Joi.object({
+    serviceID: Joi.string().allow('', null),
     email: Joi.string().required(),
     password: Joi.string().required(),
   }).required();
@@ -154,6 +155,20 @@ validator.tokensCount = async (opts) => {
   });
   await schema.validateAsync(opts);
 };
+
+validator.upload = async (opts) => {
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+    walletID: Joi.string('', null),
+    body: Joi.object({
+      type: Joi.string().valid("media").required(),
+      fileUrl: Joi.string().required(),
+      fileName: Joi.string().required(),
+      notes: Joi.string().required()
+    }).required()
+  });
+  await schema.validateAsync(opts);
+}
 
 export default validator;
 

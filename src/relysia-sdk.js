@@ -17,9 +17,11 @@ class RelysiaSDK {
     const url = `${baseURL}/v1/auth`;
     const headers = {};
     headers.accept = 'application/json';
-    headers.email = opts.email;
-    headers.password = opts.password;
-    const resp = await Fetch('get', url, headers);
+    if (headers.serviceID) headers.serviceID = opts.serviceID;
+    const data = {};
+    data.email = opts.email;
+    data.password = opts.password;
+    const resp = await Fetch('post', url, headers, data); 
     if (resp instanceof Error) throw resp;
     this.authToken = resp.data.token;
     return resp.data;
@@ -214,19 +216,19 @@ class RelysiaSDK {
     return resp.data;
   }
 
-  async purchase(opts) {
-    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
-    await this.validator.send(opts);
-    const url = `${baseURL}/v1/purchase`;
-    const headers = {};
-    headers.accept = 'application/json';
-    headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
-    const resp = await Fetch('post', url, headers, opts.data);
-    if (resp instanceof Error) throw resp;
-    return resp.data;
-  }
+  // async purchase(opts) {
+  //   if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+  //   await this.validator.send(opts);
+  //   const url = `${baseURL}/v1/purchase`;
+  //   const headers = {};
+  //   headers.accept = 'application/json';
+  //   headers.authToken = this.authToken;
+  //   if (opts.serviceId) headers.serviceId = opts.serviceId;
+  //   if (opts.walletID) headers.walletID = opts.walletID;
+  //   const resp = await Fetch('post', url, headers, opts.data);
+  //   if (resp instanceof Error) throw resp;
+  //   return resp.data;
+  // }
 
   async pay(opts) {
     if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
@@ -281,6 +283,19 @@ class RelysiaSDK {
     headers.accept = 'application/json';
     headers.tokenID = opts.address;
     const resp = await Fetch('get', url, headers);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  async upload(opts) {
+    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    await this.validator.upload(opts);
+    const url = `${baseURL}/v1/tokensCount`;
+    const headers = {};
+    headers.accept = 'application/json';
+    headers.serviceId = opts.serviceId;
+    headers.walletID = opts.walletID;
+    const resp = await Fetch('post', url. headers, opts.data);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

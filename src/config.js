@@ -1,1 +1,1 @@
-export const baseURL = 'https://wallet.vaionex.com';
+export const baseURL = 'https://dev.relysia.com';
