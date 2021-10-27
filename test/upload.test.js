@@ -14,7 +14,7 @@ describe('Axios request test', function() {
 
   it('Should authenticate user and set authToken - endpoint /v1/auth', async () => {
     const data = {
-      serviceID: '174b40d7-5d2d-462c-85b8-6a2b58a6dab2',
+      serviceID: '',
       email: "test009@gmail.com",
       password: "123456"
     };
