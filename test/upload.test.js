@@ -25,7 +25,7 @@ describe('Axios request test', function() {
 
   it('Should successfully send request', async () => {
     const opts = {
-      serviceId: '174b40d7-5d2d-462c-85b8-6a2b58a6dab2',
+      serviceId: '',
       body: {
         type: "media",
         fileUrl: "https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg",
