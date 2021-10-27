@@ -159,7 +159,7 @@ validator.tokensCount = async (opts) => {
 validator.upload = async (opts) => {
   const schema = Joi.object({
     serviceId: Joi.string().allow('', null),
-    walletID: Joi.string('', null),
+    walletID: Joi.string().allow('', null),
     body: Joi.object({
       type: Joi.string().valid("media").required(),
       fileUrl: Joi.string().required(),

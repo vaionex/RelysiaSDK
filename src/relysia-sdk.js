@@ -17,7 +17,7 @@ class RelysiaSDK {
     const url = `${baseURL}/v1/auth`;
     const headers = {};
     headers.accept = 'application/json';
-    if (headers.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceID) headers.serviceID = opts.serviceID;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
@@ -290,12 +290,14 @@ class RelysiaSDK {
   async upload(opts) {
     if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
     await this.validator.upload(opts);
-    const url = `${baseURL}/v1/tokensCount`;
+    const url = `${baseURL}/upload`;
     const headers = {};
-    headers.accept = 'application/json';
-    headers.serviceId = opts.serviceId;
-    headers.walletID = opts.walletID;
-    const resp = await Fetch('post', url. headers, opts.data);
+    headers.accept = '*/*';
+    headers['Content-Type'] = 'application/json';
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.walletID) headers.walletID = opts.walletID;
+    headers.authToken = this.authToken;
+    const resp = await Fetch('post', url, headers, opts.body);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
