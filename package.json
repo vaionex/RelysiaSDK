@@ -1,7 +1,7 @@
 {
   "name": "relysia",
   "version": "1.0.0",
-  "description": "A sdk for relysia api",
+  "description": "The official Relysia javascript SDK",
   "main": "index.js",
   "type": "module",
   "scripts": {
