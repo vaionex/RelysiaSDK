@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const validator = {};
 
@@ -161,14 +161,14 @@ validator.upload = async (opts) => {
     serviceId: Joi.string().allow('', null),
     walletID: Joi.string().allow('', null),
     body: Joi.object({
-      type: Joi.string().valid("media").required(),
+      type: Joi.string().valid('media').required(),
       fileUrl: Joi.string().required(),
       fileName: Joi.string().required(),
-      notes: Joi.string().required()
-    }).required()
+      notes: Joi.string().required(),
+    }).required(),
   });
   await schema.validateAsync(opts);
-}
+};
 
-export default validator;
+module.exports = validator;
 

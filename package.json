@@ -2,8 +2,7 @@
   "name": "relysia",
   "version": "1.0.1",
   "description": "The official Relysia javascript SDK",
-  "main": "index.js",
-  "type": "module",
+  "main": "src/relysia-sdk.js",
   "scripts": {
     "test": "mocha test/*.test.js && exit 0"
   },

@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const Fetch = async (method, url, headers, data) => {
   const request = {};
@@ -18,4 +18,4 @@ const Fetch = async (method, url, headers, data) => {
   }
 };
 
-export default Fetch;
+module.exports = Fetch;

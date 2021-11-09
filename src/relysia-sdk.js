@@ -1,6 +1,6 @@
-import {baseURL} from '../test/config.js';
-import Fetch from './axios.js';
-import validator from './validator.js';
+const {baseURL} = require('./config');
+const Fetch = require('./axios');
+const validator = require('./validator');
 
 class RelysiaSDK {
   constructor(config) {
@@ -21,7 +21,7 @@ class RelysiaSDK {
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
-    const resp = await Fetch('post', url, headers, data); 
+    const resp = await Fetch('post', url, headers, data);
     if (resp instanceof Error) throw resp;
     this.authToken = resp.data.token;
     return resp.data;
@@ -303,4 +303,4 @@ class RelysiaSDK {
   }
 }
 
-export default RelysiaSDK;
+module.exports = RelysiaSDK;

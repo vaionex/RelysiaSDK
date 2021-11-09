@@ -1,1 +1,1 @@
-export const baseURL = 'https://api.relysia.com';
+exports.baseURL = 'https://api.relysia.com';
