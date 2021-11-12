@@ -112,6 +112,16 @@ validator.send = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.drop = async (opts) => {
+  const schema = Joi.object({
+    secretKey: Joi.string().required(),
+    privateKey: Joi.string().required(),
+    serviceID: Joi.string().allow('', null),
+    data: Joi.object().required(),
+  });
+  await schema.validateAsync(opts);
+};
+
 validator.purchase = async (opts) => {
   const schema = Joi.object({
     serviceId: Joi.string().allow('', null),
