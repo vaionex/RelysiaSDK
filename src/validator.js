@@ -180,5 +180,16 @@ validator.upload = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.post = async (opts) => {
+  const schema = Joi.object({
+    serviceID: Joi.string().allow('', null),
+    walletID: Joi.string().allow('', null),
+    body: Joi.object({
+      notes: Joi.array().items(Joi.string()),
+    }).required(),
+  });
+  await schema.validateAsync(opts);
+};
+
 module.exports = validator;
 

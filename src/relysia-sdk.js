@@ -300,6 +300,21 @@ class RelysiaSDK {
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
+
+  async post(opts) {
+    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    await this.validator.post(opts);
+    const url = `${baseURL}/post`;
+    const headers = {};
+    headers.accept = '*/*';
+    headers['Content-Type'] = 'application/json';
+    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletID) headers.walletID = opts.walletID;
+    headers.authToken = this.authToken;
+    const resp = await Fetch('post', url, headers, opts.body);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
 }
 
 module.exports = RelysiaSDK;
