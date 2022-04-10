@@ -1,6 +1,6 @@
 {
   "name": "relysia",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The official Relysia javascript SDK",
   "main": "src/relysia-sdk.js",
   "scripts": {
