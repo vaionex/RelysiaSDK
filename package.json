@@ -5,7 +5,7 @@
   "main": "src/relysia-sdk.js",
   "scripts": {
     "test": "mocha test/*.test.js && exit 0",
-    "browserify": "browserify src/relysia-sdk.js > dist/relysia-sdk.js"
+    "browserify": "browserify main.js --standalone RelysiaSDK > dist/relysia-sdk.js"
   },
   "repository": {
     "type": "git",
