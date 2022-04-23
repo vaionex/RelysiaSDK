@@ -191,5 +191,12 @@ validator.post = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.transpile = async (opts) => {
+  const schema = Joi.object({
+    sourceCode: Joi.string().required(),
+  }).required();
+  await schema.validateAsync(opts);
+};
+
 module.exports = validator;
 

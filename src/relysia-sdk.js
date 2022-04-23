@@ -315,6 +315,20 @@ class RelysiaSDK {
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
+
+  async transpile(base64SourceCode) {
+    const body = {
+      sourceCode: base64SourceCode,
+    };
+    await this.validator.transpile(body);
+    const url = `${baseURL}/v1/transpile`;
+    const headers = {};
+    headers.accept = '*/*';
+    headers['Content-Type'] = 'application/json';
+    const resp = await Fetch('post', url, headers, body);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
 }
 
 module.exports = RelysiaSDK;
