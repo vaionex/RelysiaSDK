@@ -435,7 +435,7 @@ var dispatchRequest = require('./dispatchRequest');
 var mergeConfig = require('./mergeConfig');
 var validator = require('../helpers/validator');
 
-var validators = validator.validators;
+var validator = validator.validator;
 /**
  * Create a new instance of Axios
  *
@@ -479,9 +479,9 @@ Axios.prototype.request = function request(config) {
 
   if (transitional !== undefined) {
     validator.assertOptions(transitional, {
-      silentJSONParsing: validators.transitional(validators.boolean),
-      forcedJSONParsing: validators.transitional(validators.boolean),
-      clarifyTimeoutError: validators.transitional(validators.boolean)
+      silentJSONParsing: validator.transitional(validator.boolean),
+      forcedJSONParsing: validator.transitional(validator.boolean),
+      clarifyTimeoutError: validator.transitional(validator.boolean)
     }, false);
   }
 
@@ -1459,11 +1459,11 @@ module.exports = function spread(callback) {
 
 var VERSION = require('../env/data').version;
 
-var validators = {};
+var validator = {};
 
 // eslint-disable-next-line func-names
 ['object', 'boolean', 'number', 'function', 'string', 'symbol'].forEach(function(type, i) {
-  validators[type] = function validator(thing) {
+  validator[type] = function validator(thing) {
     return typeof thing === type || 'a' + (i < 1 ? 'n ' : ' ') + type;
   };
 });
@@ -1477,7 +1477,7 @@ var deprecatedWarnings = {};
  * @param {string?} message - some message with additional info
  * @returns {function}
  */
-validators.transitional = function transitional(validator, version, message) {
+validator.transitional = function transitional(validator, version, message) {
   function formatMessage(opt, desc) {
     return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
   }
@@ -1535,7 +1535,7 @@ function assertOptions(options, schema, allowUnknown) {
 
 module.exports = {
   assertOptions: assertOptions,
-  validators: validators
+  validator: validator
 };
 
 },{"../env/data":18}],30:[function(require,module,exports){

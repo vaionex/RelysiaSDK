@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const Fetch = async (method, url, headers, data) => {
+const Axios = async (method, url, headers, data) => {
   const request = {};
   request.method = method;
   request.url = url;
@@ -18,4 +18,4 @@ const Fetch = async (method, url, headers, data) => {
   }
 };
 
-module.exports = Fetch;
+module.exports = Axios;
