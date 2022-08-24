@@ -60,3 +60,5 @@ class Contracts {
     return resp.data;
   }
 }
+
+module.exports = Contracts;
