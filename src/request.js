@@ -6,7 +6,7 @@ class Request {
     this.headers = {
       "content-type": "application/json",
       accept: "application/json",
-      ...(token && { authtoken: token }),
+      ...(token && {authToken: token})
     };
   }
 
