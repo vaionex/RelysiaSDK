@@ -6,12 +6,18 @@ class Request {
     this.headers = {
       "content-type": "application/json",
       accept: "application/json",
-      ...(token && {authtoken: token})
+      ...(token && { authtoken: token }),
     };
   }
 
-  async postRequest(url, data, config) {
-    const response = await axios.post(baseURL + url, data, {
+  async postRequest(reqUrl, data, config, isAdmin) {
+    let url = baseURL;
+    if (isAdmin) {
+      url += `/admin/v1/${reqUrl}`;
+    } else {
+      url += `/v1/${reqUrl}`;
+    }
+    const response = await axios.post(url, data, {
       headers: {
         ...this.headers,
         ...config,
@@ -26,24 +32,14 @@ class Request {
     }
   }
 
-  async putRequest(url, data, config) {
-    const response = await axios.put(baseURL + url, data, {
-      headers: {
-        ...this.headers,
-        ...config,
-      },
-    });
-    if (response.status < 400) {
-      return response.data;
+  async putRequest(reqUrl, data, config) {
+    let url = baseURL;
+    if (isAdmin) {
+      url += `/admin/v1/${reqUrl}`;
     } else {
-      const error = new Error();
-      error.info = response.data;
-      return error;
+      url += `/v1/${reqUrl}`;
     }
-  }
-  
-  async getRequest(url, config) {
-    const response = await axios.get(baseURL + url, {
+    const response = await axios.put(url, data, {
       headers: {
         ...this.headers,
         ...config,
@@ -58,8 +54,36 @@ class Request {
     }
   }
 
-  async deleteRequest(url, config) {
-    const response = await axios.delete(baseURL + url, {
+  async getRequest(reqUrl, config) {
+    let url = baseURL;
+    if (isAdmin) {
+      url += `/admin/v1/${reqUrl}`;
+    } else {
+      url += `/v1/${reqUrl}`;
+    }
+    const response = await axios.get(url, {
+      headers: {
+        ...this.headers,
+        ...config,
+      },
+    });
+    if (response.status < 400) {
+      return response.data;
+    } else {
+      const error = new Error();
+      error.info = response.data;
+      return error;
+    }
+  }
+
+  async deleteRequest(reqUrl, config) {
+    let url = baseURL;
+    if (isAdmin) {
+      url += `/admin/v1/${reqUrl}`;
+    } else {
+      url += `/v1/${reqUrl}`;
+    }
+    const response = await axios.delete(url, {
       headers: {
         ...this.headers,
         ...config,

@@ -9,8 +9,7 @@
 <body>
   <script>
     const relysia = new RelysiaSDK();
-    console.log(relysia);
-    relysia.auth({email: 'shohidul@vaionex.com', password: 'shohidul2021'}).then(res => {
+    relysia.auth.auth({email: 'shohidul@vaionex.com', password: 'shohidul2021'}).then(res => {
       console.log(res);
     })
   </script>

@@ -1,1 +1,1 @@
-exports.baseURL = 'https://api.relysia.com/v1';
+exports.baseURL = 'https://api.relysia.com';
