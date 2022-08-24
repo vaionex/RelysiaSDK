@@ -15,7 +15,7 @@ class Transaction {
 
   /**
    * send transaction to peers
-   * @param { walletID, data}
+   * @param { walletID, serviceID, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async send(opts) {
@@ -24,6 +24,7 @@ class Transaction {
     const url = `/send`;
     const headers = {};
     if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -36,7 +37,7 @@ class Transaction {
    */
   async rawtx(opts) {
     await this.validate();
-    await this.validator.send(opts);
+    await this.validator.rawtx(opts);
     const url = `/rawtx`;
     const headers = {};
     if (opts.walletID) headers.walletID = opts.walletID;
@@ -175,7 +176,6 @@ class Transaction {
     const headers = {};
     if (opts.host) headers.host = opts.host;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const data = {};
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -202,9 +202,9 @@ class Transaction {
    */
   async paymentRequestPay(opts) {
     await this.validate();
-    await this.validator.paymentRequestParameter(opts);
+    await this.validator.paymentRequestWithData(opts);
     const url = `/payment-request/pay/${opts.invoiceId}`;
-    const resp = this.request.postRequest(url);
+    const resp = this.request.postRequest(url, opts.data);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

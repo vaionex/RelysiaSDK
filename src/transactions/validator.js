@@ -161,4 +161,17 @@ validator.paymentRequestParameter = async (opts) => {
   await schema.validateAsync(opts);
 };
 
+validator.paymentRequestWithData = async (opts) => {
+  const schema = Joi.object({
+    invoiceId: Joi.string().required(),
+    data: Joi.object({
+      memo: Joi.string().allow("", null),
+      refundTo: Joi.string().allow("", null),
+      transaction: Joi.string().allow("", null),
+      merchantData: Joi.string().allow("", null),
+    }).required(),
+  });
+  await schema.validateAsync(opts);
+};
+
 module.exports = validator;
