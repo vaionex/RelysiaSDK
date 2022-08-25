@@ -2,14 +2,14 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class Admin {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.authToken = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -22,9 +22,11 @@ class Admin {
     await this.validate();
     await this.validator.migrateToken(opts);
     const url = `/migrateToken`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -38,9 +40,11 @@ class Admin {
     await this.validate();
     await this.validator.migrateToken(opts);
     const url = `/domain/generateToken`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.userId) headers.userId = opts.userId;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -54,8 +58,10 @@ class Admin {
     await this.validate();
     await this.validator.verifyToken(opts);
     const url = `/domain/${opts.userId}/verifyToken`;
-    const headers = {};
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -69,7 +75,10 @@ class Admin {
     await this.validate();
     await this.validator.setUp(opts);
     const url = `/setup`;
-    const resp = this.request.postRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -83,7 +92,10 @@ class Admin {
     await this.validate();
     await this.validator.getSetUpParameter(opts);
     const url = `/setup/${serviceId}`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.getRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -97,7 +109,10 @@ class Admin {
     await this.validate();
     await this.validator.putSetUpParameter(opts);
     const url = `/setup/${serviceId}`;
-    const resp = this.request.putRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.putRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -107,25 +122,30 @@ class Admin {
    * @param {serviceId}
    * @returns {data: {status, msg}, statusCode}
    */
-   async deleteSetUpParameter(opts) {
+  async deleteSetUpParameter(opts) {
     await this.validate();
     await this.validator.deleteSetUpParameter(opts);
     const url = `/setup/${serviceId}`;
-    const resp = this.request.deleteRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.deleteRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
-
 
   /**
    * getServiceIds
    * @param {serviceId}
    * @returns {data: {status, msg}, statusCode}
    */
-   async getServiceIds(opts) {
+  async getServiceIds(opts) {
     await this.validate();
     const url = `/setup/serviceIds`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.getRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

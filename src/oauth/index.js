@@ -2,14 +2,14 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class Oauth {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -22,7 +22,9 @@ class Oauth {
     await this.validate();
     await this.validator.registerClient(opts);
     const url = `/oauth/register`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -37,7 +39,9 @@ class Oauth {
     await this.validate();
     await this.validator.getClientByKey(opts);
     const url = `/oauth/client/${key}`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -52,7 +56,9 @@ class Oauth {
     await this.validate();
     await this.validator.updateClient(opts);
     const url = `/oauth/client/${key}`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.patchRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -66,7 +72,9 @@ class Oauth {
   async getClient(opts) {
     await this.validate();
     const url = `/oauth/client`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -81,7 +89,10 @@ class Oauth {
     await this.validate();
     await this.validator.generateCode(opts);
     const url = `/oauth/access`;
-    const resp = this.request.postRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -95,7 +106,10 @@ class Oauth {
     await this.validate();
     await this.validator.generateToken(opts);
     const url = `/oauth/token`;
-    const resp = this.request.postRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

@@ -15,18 +15,17 @@ class RelysiaSDK {
   constructor(config) {
     this.validator = validator;
     this.auth = new Auth(config);
-    this.authToken = this.auth.getAuthToken();
-    this.user = new User(this.authToken);
-    this.wallet = new Wallet(this.authToken);
-    this.feeManager = new FeeManager(this.authToken);
-    this.utility = new Utility(this.authToken);
-    this.paymail = new Paymail(this.authToken);
-    this.notifications = new Notifications(this.authToken);
-    this.delete = new Delete(this.authToken);
-    this.admin = new Admin(this.authToken);
-    this.paymail = new Paymail(this.authToken);
-    this.oauth = new Oauth(this.authToken);
-    this.contracts = new Contracts(this.authToken);
+    this.user = new User(this.auth);
+    this.wallet = new Wallet(this.auth);
+    this.feeManager = new FeeManager(this.auth);
+    this.utility = new Utility(this.auth);
+    this.paymail = new Paymail(this.auth);
+    this.notifications = new Notifications(this.auth);
+    this.delete = new Delete(this.auth);
+    this.admin = new Admin(this.auth);
+    this.paymail = new Paymail(this.auth);
+    this.oauth = new Oauth(this.auth);
+    this.contracts = new Contracts(this.auth);
   }
 }
 

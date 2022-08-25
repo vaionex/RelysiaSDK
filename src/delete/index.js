@@ -2,14 +2,14 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class Delete {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -21,7 +21,10 @@ class Delete {
   async deleteUserAccount() {
     await this.validate();
     const url = `/user`;
-    const resp = this.request.deleteRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -34,7 +37,10 @@ class Delete {
   async deleteAllWallets() {
     await this.validate();
     const url = `/wallets`;
-    const resp = this.request.deleteRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -48,7 +54,9 @@ class Delete {
     await this.validate();
     await this.validator.deletenotificationToken(opts);
     const url = `/notificationToken/${opts.userId}`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = this.request.deleteRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
