@@ -2,14 +2,14 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class Transaction {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -22,7 +22,9 @@ class Transaction {
     await this.validate();
     await this.validator.send(opts);
     const url = `/send`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -39,7 +41,9 @@ class Transaction {
     await this.validate();
     await this.validator.rawtx(opts);
     const url = `/rawtx`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -56,7 +60,9 @@ class Transaction {
     await this.validate();
     await this.validator.drop(opts);
     const url = `/drop`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     if (opts.secretKey) headers.secretKey = opts.secretKey;
     if (opts.privateKey) headers.privateKey = opts.privateKey;
@@ -74,7 +80,9 @@ class Transaction {
     await this.validate();
     await this.validator.offer(opts);
     const url = `/offer`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -91,7 +99,9 @@ class Transaction {
     await this.validate();
     await this.validator.swap(opts);
     const url = `/swap`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -108,7 +118,9 @@ class Transaction {
     await this.validate();
     await this.validator.exchangeOffer(opts);
     const url = `/exchangeOffer`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -125,7 +137,9 @@ class Transaction {
     await this.validate();
     await this.validator.exchangeSwap(opts);
     const url = `/exchangeSwap`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -142,7 +156,10 @@ class Transaction {
     await this.validate();
     await this.validator.inspect(opts);
     const url = `/inspect`;
-    const resp = this.request.postRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -156,7 +173,9 @@ class Transaction {
     await this.validate();
     await this.validator.pay(opts);
     const url = `/pay`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -173,7 +192,9 @@ class Transaction {
     await this.validate();
     await this.validator.invoice(opts);
     const url = `/invoice`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken,
+    };
     if (opts.host) headers.host = opts.host;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -190,7 +211,10 @@ class Transaction {
     await this.validate();
     await this.validator.paymentRequestParameter(opts);
     const url = `/payment-request/${opts.invoiceId}`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -204,7 +228,10 @@ class Transaction {
     await this.validate();
     await this.validator.paymentRequestWithData(opts);
     const url = `/payment-request/pay/${opts.invoiceId}`;
-    const resp = this.request.postRequest(url, opts.data);
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

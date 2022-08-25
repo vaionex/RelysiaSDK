@@ -2,29 +2,31 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class FeeManager {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
   /**
    * setup your Fee Manager
-   * @param { mnemonic}
+   * @param {mnemonic}
    * @returns {data: {status, msg}, statusCode}
    */
   async initBeta(opts) {
     await this.validate();
     await this.validator.initBeta(opts);
     const url = `/initBeta`;
-    const headers = {};
+    const headers = {
+       authToken: this.auth.authToken
+    };
     if (opts.mnemonic) headers.mnemonic = opts.mnemonic;
-    const resp = this.request.getRequest(url);
+    const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -37,7 +39,10 @@ class FeeManager {
   async feeMetricesBeta() {
     await this.validate();
     const url = `/feeMetricesBeta`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken
+   };
+    const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -50,7 +55,10 @@ class FeeManager {
   async feeAddressBeta() {
     await this.validate();
     const url = `/feeAddressBeta`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken
+   };
+    const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -63,7 +71,10 @@ class FeeManager {
   async feeUtxoState() {
     await this.validate();
     const url = `/feeUtxoState`;
-    const resp = this.request.getRequest(url);
+    const headers = {
+      authToken: this.auth.authToken
+   };
+    const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

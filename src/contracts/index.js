@@ -68,4 +68,4 @@ class Contracts {
   }
 }
 
-module.exports = Contracts;
+module.exports= Contracts;

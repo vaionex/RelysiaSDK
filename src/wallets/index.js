@@ -2,14 +2,14 @@ const Request = require("../request");
 const validator = require("./validator");
 
 class Wallets {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -24,7 +24,9 @@ class Wallets {
     if (!opts.walletTitle) opts.walletTitle = "default";
     await this.validator.createWallet(opts);
     const url = `/createWallet`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
@@ -45,7 +47,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.metrics(opts);
     const url = `/metrics`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -63,7 +67,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.address(opts);
     const url = `/address`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -81,7 +87,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.allAddresses(opts);
     const url = `/allAddresses`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -99,7 +107,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.balance(opts);
     const url = `/balance`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.currency) headers.currency = opts.currency;
@@ -118,7 +128,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.history(opts);
     const url = `/history`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
@@ -138,7 +150,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.wallets(opts);
     const url = `/wallets`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.oauth) headers.oauth = opts.oauth;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = await this.request.getRequest(url, headers);
@@ -156,7 +170,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.mnemonic(opts);
     const url = `/mnemonic`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -174,7 +190,9 @@ class Wallets {
     if (!opts) opts = {};
     await this.validator.deleteWallet(opts);
     const url = `/wallet`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;

@@ -2,14 +2,14 @@ const validator = require("./validator");
 const Request = require("../request");
 
 class Utility {
-  constructor(token) {
-    this.authToken = token;
+  constructor(auth) {
+    this.auth = auth;
     this.validator = validator;
-    this.request = new Request(token);
+    this.request = new Request();
   }
 
   async validate() {
-    if (!this.authToken)
+    if (!this.auth.authToken)
       throw new Error("You must logged In. Try calling auth() method first");
   }
 
@@ -22,7 +22,9 @@ class Utility {
     await this.validate();
     await this.validator.uri(opts);
     const url = `/URI`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.uri) headers.uri = opts.uri;
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -38,7 +40,9 @@ class Utility {
     await this.validate();
     await this.validator.currencyConversion(opts);
     const url = `/currencyConversion`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.satoshis) headers.satoshis = opts.satoshis;
     if (opts.currency) headers.currency = opts.currency;
     const resp = this.request.getRequest(url, headers);
@@ -55,7 +59,9 @@ class Utility {
     await this.validate();
     await this.validator.transpile(opts);
     const url = `/transpile`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.force) headers.force = opts.force;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
@@ -71,6 +77,9 @@ class Utility {
     await this.validate();
     await this.validator.compile(opts);
     const url = `/compile`;
+    const headers = {
+      authToken: this.auth.authToken
+   };
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -85,7 +94,9 @@ class Utility {
     await this.validate();
     await this.validator.post(opts);
     const url = `/post`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -102,7 +113,9 @@ class Utility {
     await this.validate();
     await this.validator.upload(opts);
     const url = `/upload`;
-    const headers = {};
+    const headers = {
+      authToken: this.auth.authToken
+   };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.postRequest(url, opts.data, headers);
