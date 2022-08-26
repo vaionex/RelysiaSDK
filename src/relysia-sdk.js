@@ -10,6 +10,7 @@ const Admin = require("./admin");
 const Paymail = require("./paymail");
 const Contracts = require("./contracts");
 const Oauth = require("./oauth");
+const Transaction = require("./transactions");
 
 class RelysiaSDK {
   constructor(config) {
@@ -26,6 +27,7 @@ class RelysiaSDK {
     this.paymail = new Paymail(this.auth);
     this.oauth = new Oauth(this.auth);
     this.contracts = new Contracts(this.auth);
+    this.transaction = new Transaction(this.auth);
   }
 }
 

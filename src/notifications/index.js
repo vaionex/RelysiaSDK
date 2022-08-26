@@ -25,6 +25,7 @@ class Notifications {
     const headers = {
       authToken: this.auth.authToken
    };
+    if (opts.userID) headers.userID = opts.userID;
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.putRequest(url, opts.data, headers);

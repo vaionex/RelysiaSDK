@@ -96,6 +96,28 @@ class Request {
       return error;
     }
   }
+
+  async patchRequest(reqUrl, data, config, isAdmin) {
+    let url = baseURL;
+    if (isAdmin) {
+      url += `/admin/v1${reqUrl}`;
+    } else {
+      url += `/v1${reqUrl}`;
+    }
+    const response = await axios.patch(url, data, {
+      headers: {
+        ...this.headers,
+        ...config,
+      },
+    });
+    if (response.status < 400) {
+      return response.data;
+    } else {
+      const error = new Error();
+      error.info = response.data;
+      return error;
+    }
+  }
 }
 
 module.exports = Request;

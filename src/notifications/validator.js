@@ -3,6 +3,7 @@ const validator = {};
 
 validator.notificationToken = async (opts) => {
   const schema = Joi.object({
+    userID: Joi.string().required(),
     walletID: Joi.string().allow("", null),
     serviceID: Joi.string().allow("", null),
     data: Joi.object({

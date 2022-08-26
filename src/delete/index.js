@@ -52,7 +52,7 @@ class Delete {
    */
   async notificationToken(opts) {
     await this.validate();
-    await this.validator.deletenotificationToken(opts);
+    await this.validator.deleteNotificationToken(opts);
     const url = `/notificationToken/${opts.userId}`;
     const headers = {
       authToken: this.auth.authToken,
