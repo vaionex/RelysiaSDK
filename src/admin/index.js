@@ -78,7 +78,11 @@ class Admin {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers, true);
+    const resp = this.request.postRequest(url, opts.data, headers, true).then((res) => {
+      return res.data
+    }).catch((err) => {
+      throw err;
+    });
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -88,7 +92,7 @@ class Admin {
    * @param {serviceId}
    * @returns {data: {status, msg}, statusCode}
    */
-  async getSetUpParameter(opts) {
+  getSetUpParameter(opts) {
     await this.validate();
     await this.validator.getSetUpParameter(opts);
     const url = `/setup/${serviceId}`;

@@ -7,13 +7,16 @@ class User {
     this.request = new Request();
   }
 
+  async validate() {
+    if (!this.auth.authToken) await this.auth.auth();
+  }
+
   /**
    * return current user
    * @returns {data: {status, msg}, statusCode}
    */
   async getUserDetails() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    await validate();
     const url = `/user`;
     const headers = {
       authToken: this.auth.authToken

@@ -8,10 +8,10 @@
 </head>
 <body>
   <script>
-    const relysia = new RelysiaSDK();
-    relysia.auth.auth({email: 'shohidul@vaionex.com', password: 'shohidul2021'}).then(res => {
-      console.log(res);
-    })
+    const relysia = new RelysiaSDK({
+      email: 'one@vaionex.com', password: '1234455'
+    });
+    const wallets = await relysia.wallet.wallets();
   </script>
 </body>
 </html>

@@ -20,4 +20,16 @@ describe('post method testing', async function() {
     });
     console.log(response);
   });
+
+  it('asd', (done) => {
+    const a = new RelysiaSDK();
+    a.auth.validateOtp().then(() => {
+      console.log('then')
+      done()
+    }).catch(() => {
+      console.log('catch')
+      done()
+    });
+  })
+
 });

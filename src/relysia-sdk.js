@@ -13,9 +13,8 @@ const Oauth = require("./oauth");
 const Transaction = require("./transactions");
 
 class RelysiaSDK {
-  constructor(config) {
-    this.validator = validator;
-    this.auth = new Auth(config);
+  constructor(params) {
+    this.auth = new Auth(params);
     this.user = new User(this.auth);
     this.wallet = new Wallet(this.auth);
     this.feeManager = new FeeManager(this.auth);

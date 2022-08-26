@@ -9,8 +9,7 @@ class Notifications {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) await this.auth.auth();
   }
 
   /**
@@ -23,8 +22,8 @@ class Notifications {
     await this.validator.notificationToken(opts);
     const url = `/notificationToken/${opts.userId}`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.userID) headers.userID = opts.userID;
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
@@ -43,8 +42,8 @@ class Notifications {
     await this.validator.sendNotification(opts);
     const url = `/sendNotification`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.postRequest(url, opts.data, headers);

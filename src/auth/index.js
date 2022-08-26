@@ -2,22 +2,18 @@ const Request = require("../request");
 const validator = require("./validator");
 
 class Auth {
-  constructor(config) {
-    this.authToken = config && config.authToken;
+  constructor(params) {
+    this.email = params.email;
+    this.password = params.password;
     this.validator = validator;
     this.request = new Request();
-  }
-
-  setAuthToken(token) {
-    this.authToken = token;
-  }
-
-  getAuthToken() {
-    return this.authToken;
+    this.authToken = null;
   }
 
   async validate() {
-    if (!this.authToken) throw new Error('You must logged In. Try calling auth() method first');
+    if (!this.authToken) {
+      await this.auth();
+    } 
   }
 
   /**
@@ -25,16 +21,15 @@ class Auth {
    * @param {email, password}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async auth(opts) {
-    await this.validator.auth(opts);
+  async auth() {
     const url = `/auth`;
     if (opts.serviceID) headers.serviceID = opts.serviceID;
     const data = {};
-    data.email = opts.email;
-    data.password = opts.password;
+    data.email = this.email;
+    data.password = this.password;
     const resp = await this.request.postRequest(url, data);
     if (resp instanceof Error) throw resp;
-    setAuthToken(resp.data.token);
+    this.authToken = resp.data.token;
     return resp.data;
   }
 
@@ -52,7 +47,7 @@ class Auth {
     data.password = opts.password;
     const resp = await this.request.postRequest(url, data);
     if (resp instanceof Error) throw resp;
-    setAuthToken(resp.data.token);
+    this.authToken = resp.data.token;
     return resp.data;
   }
 

@@ -9,8 +9,9 @@ class Contracts {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      await this.auth.auth();
+    }
   }
 
   /**
