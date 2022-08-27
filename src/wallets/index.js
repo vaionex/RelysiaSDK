@@ -19,13 +19,11 @@ class Wallets {
    **/
   async createWallet(opts) {
     await this.validate();
-    if (!opts) opts = {};
-    if (!opts.walletTitle) opts.walletTitle = "default";
     await this.validator.createWallet(opts);
     const url = `/createWallet`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
@@ -41,14 +39,13 @@ class Wallets {
    * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async metrics(opts) {
+  async getMetrics(opts) {
     await this.validate();
-    if (!opts) opts = {};
     await this.validator.metrics(opts);
     const url = `/metrics`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
@@ -61,14 +58,14 @@ class Wallets {
    * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async address(opts) {
+  async getAddress(opts) {
     await this.validate();
     if (!opts) opts = {};
     await this.validator.address(opts);
     const url = `/address`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
@@ -81,14 +78,14 @@ class Wallets {
    * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async allAddresses(opts) {
+  async getAllAddresses(opts) {
     await this.validate();
     if (!opts) opts = {};
     await this.validator.allAddresses(opts);
     const url = `/allAddresses`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
@@ -101,14 +98,13 @@ class Wallets {
    * @param {serviceid, walletid, currency}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async balance(opts) {
+  async getBalance(opts) {
     await this.validate();
-    if (!opts) opts = {};
     await this.validator.balance(opts);
     const url = `/balance`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.currency) headers.currency = opts.currency;
@@ -122,14 +118,14 @@ class Wallets {
    * @param {nextPageToken, serviceid, walletid, type}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async history(opts) {
+  async getHistory(opts) {
     await this.validate();
     if (!opts) opts = {};
     await this.validator.history(opts);
     const url = `/history`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
@@ -144,14 +140,14 @@ class Wallets {
    * @param {oauth, serviceid}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async wallets(opts) {
+  async getWallets(opts) {
     await this.validate();
     if (!opts) opts = {};
     await this.validator.wallets(opts);
     const url = `/wallets`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.oauth) headers.oauth = opts.oauth;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = await this.request.getRequest(url, headers);
@@ -164,14 +160,14 @@ class Wallets {
    * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
-  async mnemonic(opts) {
+  async getMnemonic(opts) {
     await this.validate();
     if (!opts) opts = {};
     await this.validator.mnemonic(opts);
     const url = `/mnemonic`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
@@ -190,8 +186,8 @@ class Wallets {
     await this.validator.deleteWallet(opts);
     const url = `/wallet`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;

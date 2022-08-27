@@ -2,18 +2,18 @@ const Joi = require("joi");
 const validator = {};
 
 validator.createWallet = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     serviceid: Joi.string().allow("", null),
     walletTitle: Joi.string().required(),
     type: Joi.string().allow("", null),
     walletLogo: Joi.string().allow("", null),
     walletPassword: Joi.string().allow("", null),
-  }).required();
+  });
   await schema.validateAsync(opts);
 };
 
 validator.metrics = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
   });
@@ -21,7 +21,7 @@ validator.metrics = async (opts) => {
 };
 
 validator.address = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
   });
@@ -29,7 +29,7 @@ validator.address = async (opts) => {
 };
 
 validator.allAddresses = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
   });
@@ -37,27 +37,30 @@ validator.allAddresses = async (opts) => {
 };
 
 validator.balance = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
+    nextPageToken: Joi.string().allow('', null),
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
     currency: Joi.string().allow('', null),
+    type: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.history = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     nextPageToken: Joi.string().allow('', null),
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
     type: Joi.string().allow('', null),
+    version: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 
 validator.wallets = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     oauth: Joi.string().allow('', null),
     serviceid: Joi.string().allow('', null),
   });
@@ -65,7 +68,7 @@ validator.wallets = async (opts) => {
 };
 
 validator.mnemonic = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     serviceid: Joi.string().allow('', null),
     walletid: Joi.string().allow('', null),
   });
@@ -73,7 +76,7 @@ validator.mnemonic = async (opts) => {
 };
 
 validator.deleteWallet = async (opts) => {
-  const schema = Joi.object({
+  const schema = Joi.object().required().keys({
     walletid: Joi.string().required(),
   });
   await schema.validateAsync(opts);

@@ -37,7 +37,7 @@ class Oauth {
   async getClientByKey(opts) {
     await this.validate();
     await this.validator.getClientByKey(opts);
-    const url = `/oauth/client/${key}`;
+    const url = `/oauth/client/${opts.key}`;
     const headers = {
       authToken: this.auth.authToken,
     };
@@ -54,11 +54,11 @@ class Oauth {
   async updateClient(opts) {
     await this.validate();
     await this.validator.updateClient(opts);
-    const url = `/oauth/client/${key}`;
+    const url = `/oauth/client/${opts.key}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.patchRequest(url, opts.data, headers);
+    const resp = await this.request.patchRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -68,7 +68,7 @@ class Oauth {
    * @param {authToken}
    * @returns {data: {status, msg}, statusCode}
    */
-  async getClient(opts) {
+  async getClient() {
     await this.validate();
     const url = `/oauth/client`;
     const headers = {

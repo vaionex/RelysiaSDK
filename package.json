@@ -4,7 +4,7 @@
   "description": "The official Relysia javascript SDK",
   "main": "src/relysia-sdk.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha test/*/*.test.js && exit 0",
+    "test": "mocha test/*/*.test.js && exit 0",
     "browserify": "browserify main.js --standalone RelysiaSDK > dist/relysia-sdk.js"
   },
   "repository": {
@@ -20,8 +20,7 @@
   "dependencies": {
     "axios": "^0.22.0",
     "browserify": "^17.0.0",
-    "joi": "^17.4.2",
-    "nyc": "^15.1.0"
+    "joi": "^17.4.2"
   },
   "devDependencies": {
     "chai": "^4.3.4",

@@ -17,9 +17,9 @@ class Paymail {
    * @param  { paymailId, serviceid }
    * @returns {data: {status, msg}, statusCode}
    */
-  async paymailRequest(opts) {
+  async getPaymailById(opts) {
     await this.validate();
-    await this.validator.paymailRequestParameter(opts);
+    await this.validator.getPaymailById(opts);
     const url = `/paymail/${opts.paymailId}`;
     const headers = {
       authToken: this.auth.authToken,
@@ -35,9 +35,9 @@ class Paymail {
    * @param  { walletid, serviceid }
    * @returns {data: {status, msg}, statusCode}
    */
-  async putPaymailRequest(opts) {
+  async updatePaymail(opts) {
     await this.validate();
-    await this.validator.paymailPutRequest(opts);
+    await this.validator.updatePaymail(opts);
     const url = `/paymail`;
     const headers = {
       authToken: this.auth.authToken,
@@ -54,10 +54,10 @@ class Paymail {
    * @param  { walletid}
    * @returns {data: {status, msg}, statusCode}
    */
-  async postPaymailRequest(opts) {
+  async activatePaymail(opts) {
     await this.validate();
-    await this.validator.paymailPostRequest(opts);
-    const url = `/paymail/${opts.activate}`;
+    await this.validator.activatePaymail(opts);
+    const url = `/paymail/activate`;
     const headers = {
       authToken: this.auth.authToken,
     };
@@ -86,7 +86,7 @@ class Paymail {
 
   /**
    * bsvalias/address/{paymail}
-   * @param  {paymail}
+   * @param  { paymail }
    * @returns {data: {status, msg}, statusCode}
    */
   async bsvAddressRequest(opts) {
@@ -106,10 +106,10 @@ class Paymail {
    * @param  {paymail}
    * @returns {data: {status, msg}, statusCode}
    */
-  async bsvVerifypubkeyRequest(opts) {
+  async bsvVerifyPubkeyRequest(opts) {
     await this.validate();
     await this.validator.bsvVerifypubkeyRequest(opts);
-    const url = `/bsvalias/verifypubkey/${opts.paymail}/${pubkey}`;
+    const url = `/bsvalias/verifypubkey/${opts.paymail}/${opts.pubkey}`;
     const headers = {
       authToken: this.auth.authToken,
     };
