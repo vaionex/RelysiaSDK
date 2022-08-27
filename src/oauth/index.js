@@ -24,7 +24,7 @@ class Oauth {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -41,7 +41,7 @@ class Oauth {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -74,7 +74,7 @@ class Oauth {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -91,7 +91,7 @@ class Oauth {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -108,7 +108,7 @@ class Oauth {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

@@ -16,7 +16,7 @@ class Contracts {
 
   /**
    * mint a token
-   * @param { serviceId, protocol, data}
+   * @param { serviceid, protocol, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async issue(opts) {
@@ -26,8 +26,9 @@ class Contracts {
     const headers = {
       authToken: this.auth.authToken
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.protocol) headers.protocol = opts.protocol;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -37,7 +38,7 @@ class Contracts {
    * @param { id }
    * @returns {data: {status, msg}, statusCode}
    */
-  async tokenDetails(opts) {
+  async getTokenDetails(opts) {
     await this.validate();
     await this.validator.getTokenDetails(opts);
     const url = `/token/${opts.id}`;
@@ -51,7 +52,7 @@ class Contracts {
 
   /**
    * get stas token details
-   * @param { walletID, serviceID, data }
+   * @param { walletid, serviceid, data }
    * @returns {data: {status, msg}, statusCode}
    */
   async redeem(opts) {
@@ -61,8 +62,8 @@ class Contracts {
     const headers = {
       authToken: this.auth.authToken
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

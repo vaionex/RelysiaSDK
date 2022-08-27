@@ -14,7 +14,7 @@ class Paymail {
 
   /**
    * get paymail
-   * @param  { paymailId, serviceId }
+   * @param  { paymailId, serviceid }
    * @returns {data: {status, msg}, statusCode}
    */
   async paymailRequest(opts) {
@@ -24,15 +24,15 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.getRequest(url, headers);
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * put paymail
-   * @param  { walletID, serviceId }
+   * @param  { walletid, serviceid }
    * @returns {data: {status, msg}, statusCode}
    */
   async putPaymailRequest(opts) {
@@ -42,16 +42,16 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.putRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.putRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * Activate and Deactivate paymail
-   * @param  { walletID}
+   * @param  { walletid}
    * @returns {data: {status, msg}, statusCode}
    */
   async postPaymailRequest(opts) {
@@ -61,8 +61,8 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -79,7 +79,7 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -96,7 +96,7 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -113,7 +113,7 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, headers);
+    const resp = await this.request.postRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -130,7 +130,7 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, headers);
+    const resp = await this.request.postRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -147,7 +147,7 @@ class Paymail {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, headers);
+    const resp = await this.request.postRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -157,13 +157,13 @@ class Paymail {
    * @param  {}
    * @returns {}
    */
-  async wellKnownBsv(opts) {
+  async wellKnownBsv() {
     await this.validate();
     const url = `/well-known/bsvalias`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

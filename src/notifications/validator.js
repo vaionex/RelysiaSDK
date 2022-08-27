@@ -3,9 +3,9 @@ const validator = {};
 
 validator.notificationToken = async (opts) => {
   const schema = Joi.object({
-    userID: Joi.string().required(),
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    userid: Joi.string().required(),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       expoNotificationToken: Joi.string().allow("", null),
     }).required(),
@@ -15,8 +15,8 @@ validator.notificationToken = async (opts) => {
 
 validator.sendNotification = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       type: Joi.string().allow("", null),
       userAddress: Joi.string().allow("", null),

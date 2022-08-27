@@ -23,7 +23,7 @@ class Delete {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.deleteRequest(url, headers);
+    const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -39,25 +39,25 @@ class Delete {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.deleteRequest(url, headers);
+    const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * update notification token
-   * @param { userId,walletID, serviceid}
+   * @param { userid,walletid, serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
   async notificationToken(opts) {
     await this.validate();
     await this.validator.deleteNotificationToken(opts);
-    const url = `/notificationToken/${opts.userId}`;
+    const url = `/notificationToken/${opts.userid}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    const resp = this.request.deleteRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    const resp = await this.request.deleteRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

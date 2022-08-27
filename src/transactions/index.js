@@ -14,7 +14,7 @@ class Transaction {
 
   /**
    * send transaction to peers
-   * @param { walletID, serviceID, data}
+   * @param { walletid, serviceid, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async send(opts) {
@@ -24,16 +24,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * return rawtx
-   * @param { walletID, serviceID, data}
+   * @param { walletid, serviceid, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async rawtx(opts) {
@@ -43,16 +43,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * withdraws coins from private key
-   * @param {serviceID, secretKey, privateKey, data}
+   * @param {serviceid, secretKey, privateKey, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async drop(opts) {
@@ -62,17 +62,17 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.secretKey) headers.secretKey = opts.secretKey;
     if (opts.privateKey) headers.privateKey = opts.privateKey;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * create a swap offer
-   * @param {walletID, serviceID, data}
+   * @param {walletid, serviceid, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async offer(opts) {
@@ -82,16 +82,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * accept swap offers
-   * @param {walletID, serviceID, data}
+   * @param {walletid, serviceid, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async swap(opts) {
@@ -101,16 +101,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * create swap offer for exchange
-   * @param {walletID, serviceID, data}
+   * @param {walletid, serviceid, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async exchangeOffer(opts) {
@@ -120,16 +120,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * accept swap offer
-   * @param {serviceID, secretKey, privateKey, data}
+   * @param {serviceid, secretKey, privateKey, data}
    * @returns {data: {status, msg}, statusCode}
    */
   async exchangeSwap(opts) {
@@ -139,9 +139,9 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -158,14 +158,14 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * pay the invoices
-   * @param  { serviceID, secretKey, data }
+   * @param  { serviceid, secretKey, data }
    * @returns {data: {status, msg}, statusCode}
    */
   async pay(opts) {
@@ -175,16 +175,16 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * create the invoices
-   * @param  { serviceID, host, data }
+   * @param  { serviceid, host, data }
    * @returns {data: {status, msg}, statusCode}
    */
   async invoice(opts) {
@@ -195,8 +195,8 @@ class Transaction {
       authToken: this.auth.authToken,
     };
     if (opts.host) headers.host = opts.host;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -213,7 +213,7 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -230,7 +230,7 @@ class Transaction {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

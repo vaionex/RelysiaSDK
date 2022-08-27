@@ -22,10 +22,10 @@ class FeeManager {
     await this.validator.initBeta(opts);
     const url = `/initBeta`;
     const headers = {
-       authToken: this.auth.authToken
+      authToken: this.auth.authToken,
     };
     if (opts.mnemonic) headers.mnemonic = opts.mnemonic;
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -39,9 +39,9 @@ class FeeManager {
     await this.validate();
     const url = `/feeMetricesBeta`;
     const headers = {
-      authToken: this.auth.authToken
-   };
-    const resp = this.request.getRequest(url, headers);
+      authToken: this.auth.authToken,
+    };
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -55,9 +55,9 @@ class FeeManager {
     await this.validate();
     const url = `/feeAddressBeta`;
     const headers = {
-      authToken: this.auth.authToken
-   };
-    const resp = this.request.getRequest(url, headers);
+      authToken: this.auth.authToken,
+    };
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -71,9 +71,9 @@ class FeeManager {
     await this.validate();
     const url = `/feeUtxoState`;
     const headers = {
-      authToken: this.auth.authToken
-   };
-    const resp = this.request.getRequest(url, headers);
+      authToken: this.auth.authToken,
+    };
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

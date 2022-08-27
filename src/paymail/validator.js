@@ -3,7 +3,7 @@ const validator = {};
 
 validator.paymailRequestParameter = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().required(),
+    serviceid: Joi.string().required(),
     paymailId: Joi.string().required(),
   });
   await schema.validateAsync(opts);
@@ -11,8 +11,8 @@ validator.paymailRequestParameter = async (opts) => {
 
 validator.paymailPutRequest = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().required(),
-    serviceId: Joi.string().required(),
+    walletid: Joi.string().required(),
+    serviceid: Joi.string().required(),
     data: Joi.object({
       newPaymailId: Joi.string().allow("", null),
     }).required(),
@@ -23,7 +23,7 @@ validator.paymailPutRequest = async (opts) => {
 
 validator.paymailPostRequest = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().required(),
+    walletid: Joi.string().required(),
     data: Joi.object({
       activate: Joi.boolean(),
     }).required(),

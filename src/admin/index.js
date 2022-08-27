@@ -3,19 +3,18 @@ const Request = require("../request");
 
 class Admin {
   constructor(auth) {
-    this.authToken = auth;
+    this.auth = auth;
     this.validator = validator;
     this.request = new Request();
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) await this.auth.auth();
   }
 
   /**
    * Migrate Token
-   * @param { walletID}
+   * @param { walletid}
    * @returns {data: {status, msg}, statusCode}
    */
   async migrateToken(opts) {
@@ -25,50 +24,51 @@ class Admin {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    const resp = this.request.postRequest(url, opts.data, headers, true);
+    if (opts.walletid) headers.walletid = opts.walletid;
+    const resp = await this.request.postRequest(url, {}, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * Generate a domain verification Token
-   * @param {userId}
+   * @param {userid}
    * @returns {data: {status, msg}, statusCode}
    */
   async generateToken(opts) {
     await this.validate();
-    await this.validator.migrateToken(opts);
+    await this.validator.generateToken(opts);
     const url = `/domain/generateToken`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.userId) headers.userId = opts.userId;
-    const resp = this.request.postRequest(url, opts.data, headers, true);
+    if (opts.userid) headers.userid = opts.userid;
+    const resp = await this.request.postRequest(url, opts.data, headers, true);
+
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * verify domain ownership
-   * @param { userId}
+   * @param { userid}
    * @returns {data: {status, msg}, statusCode}
    */
   async verifyToken(opts) {
     await this.validate();
     await this.validator.verifyToken(opts);
-    const url = `/domain/${opts.userId}/verifyToken`;
+    const url = `/domain/${opts.userid}/verifyToken`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers, true);
+    const resp = await this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * setup
-   * @param { userId}
+   * @param { userid}
    * @returns {data: {status, msg}, statusCode}
    */
   async setUp(opts) {
@@ -78,78 +78,74 @@ class Admin {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.postRequest(url, opts.data, headers, true).then((res) => {
-      return res.data
-    }).catch((err) => {
-      throw err;
-    });
+    const resp = await this.request.postRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * getSetupServiceId
-   * @param {serviceId}
+   * get setup
+   * @param {serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
-  getSetUpParameter(opts) {
+  async getSetupByserviceid(opts) {
     await this.validate();
-    await this.validator.getSetUpParameter(opts);
-    const url = `/setup/${serviceId}`;
+    await this.validator.getSetupByserviceid(opts);
+    const url = `/setup/${opts.serviceid}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers, true);
+    const resp = await this.request.getRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * putSetupParameter
-   * @param {serviceId}
+   * update setup
+   * @param {serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
-  async putSetUpParameter(opts) {
+  async updateSetupByserviceid(opts) {
     await this.validate();
-    await this.validator.putSetUpParameter(opts);
-    const url = `/setup/${serviceId}`;
+    await this.validator.updateSetupByserviceid(opts);
+    const url = `/setup/${opts.serviceid}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.putRequest(url, opts.data, headers, true);
+    const resp = await this.request.putRequest(url, opts.data, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * deleteSetupParameter
-   * @param {serviceId}
+   * delete a setup
+   * @param {serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
-  async deleteSetUpParameter(opts) {
+  async deleteSetupByserviceid(opts) {
     await this.validate();
-    await this.validator.deleteSetUpParameter(opts);
-    const url = `/setup/${serviceId}`;
+    await this.validator.deleteSetupByserviceid(opts);
+    const url = `/setup/${opts.serviceid}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.deleteRequest(url, headers, true);
+    const resp = await this.request.deleteRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * getServiceIds
-   * @param {serviceId}
+   * get setup by service ids
+   * @param {serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
-  async getServiceIds(opts) {
+  async getSetupByserviceids() {
     await this.validate();
-    const url = `/setup/serviceIds`;
+    const url = `/setup/serviceids`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers, true);
+    const resp = await this.request.getRequest(url, headers, true);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

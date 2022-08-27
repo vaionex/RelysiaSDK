@@ -35,7 +35,7 @@ validator.compile = async (opts) => {
 
 validator.post = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().required(),
+    walletid: Joi.string().required(),
     serviceid: Joi.string().required(),
     data: Joi.object({
       dataArray: Joi.array().min(1).items({
@@ -48,7 +48,7 @@ validator.post = async (opts) => {
 
 validator.upload = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().required(),
+    walletid: Joi.string().required(),
     serviceid: Joi.string().required(),
     data: Joi.object({
       fileUrl: Joi.string().allow("", null),

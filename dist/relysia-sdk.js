@@ -2123,7 +2123,7 @@ class RelysiaSDK {
     const url = `${baseURL}/v1/auth`;
     const headers = {};
     headers.accept = 'application/json';
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
@@ -2154,7 +2154,7 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
     if (opts.walletLogo) headers.walletLogo = opts.walletLogo;
@@ -2172,8 +2172,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2187,8 +2187,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2202,8 +2202,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2217,8 +2217,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.currency) headers.currency = opts.currency;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
@@ -2232,7 +2232,7 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    headers.walletId = opts.walletId;
+    headers.walletid = opts.walletid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2247,8 +2247,8 @@ class RelysiaSDK {
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.type) headers.type = opts.type;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
@@ -2264,7 +2264,7 @@ class RelysiaSDK {
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
     if (opts.oauth) headers.oauth = opts.oauth;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2278,8 +2278,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('get', url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2315,8 +2315,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('post', url, headers, opts.data);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2329,8 +2329,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await Fetch('post', url, headers, opts.data);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2350,7 +2350,7 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = 'application/json';
     headers.authToken = this.authToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.protocol) headers.protocol = opts.protocol;
     const resp = await Fetch('post', url, headers, opts.data);
     if (resp instanceof Error) throw resp;
@@ -2386,8 +2386,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = '*/*';
     headers['Content-Type'] = 'application/json';
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     headers.authToken = this.authToken;
     const resp = await Fetch('post', url, headers, opts.body);
     if (resp instanceof Error) throw resp;
@@ -2401,7 +2401,7 @@ class RelysiaSDK {
     headers.accept = 'application/json';
     headers.secretKey = opts.secretKey;
     headers.privateKey = opts.privateKey;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = await Fetch('post', url, headers, opts.data);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -2414,8 +2414,8 @@ class RelysiaSDK {
     const headers = {};
     headers.accept = '*/*';
     headers['Content-Type'] = 'application/json';
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     headers.authToken = this.authToken;
     const resp = await Fetch('post', url, headers, opts.body);
     if (resp instanceof Error) throw resp;
@@ -2446,7 +2446,7 @@ const validator = {};
 
 validator.auth = async (opts) => {
   const schema = Joi.object({
-    serviceID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
     email: Joi.string().required(),
     password: Joi.string().required(),
   }).required();
@@ -2455,7 +2455,7 @@ validator.auth = async (opts) => {
 
 validator.createWallet = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
     walletTitle: Joi.string().required(),
     type: Joi.string().allow('', null),
     walletLogo: Joi.string().allow('', null),
@@ -2466,32 +2466,32 @@ validator.createWallet = async (opts) => {
 
 validator.metrics = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.address = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.allAddresses = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.balance = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     currency: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
@@ -2499,7 +2499,7 @@ validator.balance = async (opts) => {
 
 validator.stasTokenBalance = async (opts) => {
   const schema = Joi.object({
-    walletId: Joi.string().required(),
+    walletid: Joi.string().required(),
   });
   await schema.validateAsync(opts);
 };
@@ -2507,8 +2507,8 @@ validator.stasTokenBalance = async (opts) => {
 validator.history = async (opts) => {
   const schema = Joi.object({
     nextPageToken: Joi.string().allow('', null),
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     type: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
@@ -2517,15 +2517,15 @@ validator.history = async (opts) => {
 validator.wallets = async (opts) => {
   const schema = Joi.object({
     oauth: Joi.string().allow('', null),
-    serviceId: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.mnemonic = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
@@ -2547,8 +2547,8 @@ validator.URI = async (opts) => {
 
 validator.send = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     data: Joi.object().required(),
   });
   await schema.validateAsync(opts);
@@ -2558,7 +2558,7 @@ validator.drop = async (opts) => {
   const schema = Joi.object({
     secretKey: Joi.string().required(),
     privateKey: Joi.string().required(),
-    serviceID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
     data: Joi.object().required(),
   });
   await schema.validateAsync(opts);
@@ -2566,8 +2566,8 @@ validator.drop = async (opts) => {
 
 validator.purchase = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     data: Joi.object({
       dataArray: Joi.array().min(1),
       tokenId: Joi.string().allow('', null),
@@ -2578,8 +2578,8 @@ validator.purchase = async (opts) => {
 
 validator.pay = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     data: Joi.object().required(),
   });
   await schema.validateAsync(opts);
@@ -2587,7 +2587,7 @@ validator.pay = async (opts) => {
 
 validator.issue = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
     protocol: Joi.string().allow('', null),
     data: Joi.object().required(),
   });
@@ -2610,8 +2610,8 @@ validator.tokensCount = async (opts) => {
 
 validator.upload = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     body: Joi.object({
       type: Joi.string().valid('media').required(),
       fileUrl: Joi.string().required(),
@@ -2624,8 +2624,8 @@ validator.upload = async (opts) => {
 
 validator.post = async (opts) => {
   const schema = Joi.object({
-    serviceID: Joi.string().allow('', null),
-    walletID: Joi.string().allow('', null),
+    serviceid: Joi.string().allow('', null),
+    walletid: Joi.string().allow('', null),
     body: Joi.object({
       notes: Joi.array().items(Joi.string()),
     }).required(),

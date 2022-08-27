@@ -25,7 +25,7 @@ class Utility {
       authToken: this.auth.authToken
    };
     if (opts.uri) headers.uri = opts.uri;
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -44,7 +44,7 @@ class Utility {
    };
     if (opts.satoshis) headers.satoshis = opts.satoshis;
     if (opts.currency) headers.currency = opts.currency;
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -62,7 +62,7 @@ class Utility {
       authToken: this.auth.authToken
    };
     if (opts.force) headers.force = opts.force;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -79,14 +79,14 @@ class Utility {
     const headers = {
       authToken: this.auth.authToken
    };
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * Post messages to the Blockchain
-   * @param  { walletID, serviceid}
+   * @param  { walletid, serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
   async post(opts) {
@@ -96,16 +96,16 @@ class Utility {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * Blockchain File Upload
-   * @param  { walletID, serviceid}
+   * @param  { walletid, serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
   async upload(opts) {
@@ -115,9 +115,9 @@ class Utility {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

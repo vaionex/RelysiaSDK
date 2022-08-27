@@ -3,8 +3,8 @@ const validator = {};
 
 validator.send = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array().min(1).items({
         to: Joi.string().required(),
@@ -17,8 +17,8 @@ validator.send = async (opts) => {
 
 validator.rawtx = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array().min(1).items({
         to: Joi.string().required(),
@@ -31,7 +31,7 @@ validator.rawtx = async (opts) => {
 
 validator.drop = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     secretKey: Joi.string().allow("", null),
     privateKey: Joi.string().allow("", null),
     data: Joi.object({
@@ -51,8 +51,8 @@ validator.drop = async (opts) => {
 
 validator.offer = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array()
         .min(1)
@@ -69,8 +69,8 @@ validator.offer = async (opts) => {
 
 validator.swap = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array().min(1).items({
         swapHex: Joi.string().required(),
@@ -82,8 +82,8 @@ validator.swap = async (opts) => {
 
 validator.exchangeOffer = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array()
         .min(1)
@@ -106,8 +106,8 @@ validator.exchangeOffer = async (opts) => {
 
 validator.exchangeSwap = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       dataArray: Joi.array().min(1).items({
         swapId: Joi.string().required(),
@@ -130,8 +130,8 @@ validator.inspect = async (opts) => {
 
 validator.pay = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow("", null),
-    walletID: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
+    walletid: Joi.string().allow("", null),
     data: Joi.object().required(),
   });
   await schema.validateAsync(opts);
@@ -140,7 +140,7 @@ validator.pay = async (opts) => {
 validator.invoice = async (opts) => {
   const schema = Joi.object({
     host: Joi.string().allow("", null),
-    serviceID: Joi.string().allow("", null),
+    serviceid: Joi.string().allow("", null),
     data: Joi.object({
       type: Joi.string().allow("", null),
       amount: Joi.number().required(),

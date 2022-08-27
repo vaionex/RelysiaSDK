@@ -43,7 +43,7 @@ validator.generateCode = async (opts) => {
   const schema = Joi.object({
     data: Joi.object({
       clientKey: Joi.string().allow("", null),
-      userID: Joi.string().allow("", null),
+      userid: Joi.string().allow("", null),
       access: Joi.object()({
         access_scope: Joi.string().allow("", null),
         acccess_type: Joi.string().allow("", null),

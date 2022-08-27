@@ -14,7 +14,7 @@ class Wallets {
 
   /**
    * create a wallet
-   * @param {serviceId, walletTitle, walletLogo, type, walletPassword}
+   * @param {serviceid, walletTitle, walletLogo, type, walletPassword}
    * @returns {data: {status, msg}, statusCode}
    **/
   async createWallet(opts) {
@@ -26,7 +26,7 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
     if (opts.walletLogo) headers.walletLogo = opts.walletLogo;
@@ -38,7 +38,7 @@ class Wallets {
 
   /**
    * shows detailed output of each utxo in wallet
-   * @param {serviceId, walletID}
+   * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async metrics(opts) {
@@ -49,16 +49,16 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * return wallet address w.r.t walletId
-   * @param {serviceId, walletID}
+   * return wallet address w.r.t walletid
+   * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async address(opts) {
@@ -69,8 +69,8 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -78,7 +78,7 @@ class Wallets {
 
   /**
    * return all wallet addresses
-   * @param {serviceId, walletID}
+   * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async allAddresses(opts) {
@@ -89,8 +89,8 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -98,7 +98,7 @@ class Wallets {
 
   /**
    * return coin & balances
-   * @param {serviceId, walletID, currency}
+   * @param {serviceid, walletid, currency}
    * @returns {data: {status, msg}, statusCode}
    **/
   async balance(opts) {
@@ -109,8 +109,8 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.currency) headers.currency = opts.currency;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -119,7 +119,7 @@ class Wallets {
 
   /**
    * return all past transactions histories
-   * @param {nextPageToken, serviceId, walletID, type}
+   * @param {nextPageToken, serviceid, walletid, type}
    * @returns {data: {status, msg}, statusCode}
    **/
   async history(opts) {
@@ -131,8 +131,8 @@ class Wallets {
       authToken: this.auth.authToken
    };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.type) headers.type = opts.type;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -141,7 +141,7 @@ class Wallets {
 
   /**
    * list all wallets
-   * @param {oauth, serviceId}
+   * @param {oauth, serviceid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async wallets(opts) {
@@ -153,7 +153,7 @@ class Wallets {
       authToken: this.auth.authToken
    };
     if (opts.oauth) headers.oauth = opts.oauth;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -161,7 +161,7 @@ class Wallets {
 
   /**
    * return mnemonicPhrase data
-   * @param {serviceId, walletID}
+   * @param {serviceid, walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async mnemonic(opts) {
@@ -172,16 +172,16 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
-   * delete a wallet w.r.t walletId
-   * @param {walletID}
+   * delete a wallet w.r.t walletid
+   * @param {walletid}
    * @returns {data: {status, msg}, statusCode}
    **/
   async deleteWallet(opts) {
@@ -192,7 +192,7 @@ class Wallets {
     const headers = {
       authToken: this.auth.authToken
    };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletid) headers.walletid = opts.walletid;
     const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

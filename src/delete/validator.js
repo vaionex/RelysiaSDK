@@ -3,8 +3,8 @@ const validator = {};
 
 validator.deleteNotificationToken = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
-    userID: Joi.string().required()
+    walletid: Joi.string().allow("", null),
+    userid: Joi.string().required()
   });
   await schema.validateAsync(opts);
 };

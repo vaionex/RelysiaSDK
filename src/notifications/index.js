@@ -14,27 +14,27 @@ class Notifications {
 
   /**
    * update notification token
-   * @param { userId,walletID, serviceid}
+   * @param { userid,walletid, serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
   async notificationToken(opts) {
     await this.validate();
     await this.validator.notificationToken(opts);
-    const url = `/notificationToken/${opts.userId}`;
+    const url = `/notificationToken/${opts.userid}`;
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.userID) headers.userID = opts.userID;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.userid) headers.userid = opts.userid;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
-    const resp = this.request.putRequest(url, opts.data, headers);
+    const resp = await this.request.putRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
 
   /**
    * send a notification
-   * @param { userId,walletID, serviceid}
+   * @param { userid,walletid, serviceid}
    * @returns {data: {status, msg}, statusCode}
    */
   async sendNotification(opts) {
@@ -44,9 +44,9 @@ class Notifications {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletid) headers.walletid = opts.walletid;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

@@ -22,8 +22,8 @@ class Auth {
    * @returns {data: {status, msg}, statusCode}
    **/
   async auth() {
+    await this.validator.auth({email: this.email, password: this.password});
     const url = `/auth`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
     const data = {};
     data.email = this.email;
     data.password = this.password;
@@ -41,7 +41,7 @@ class Auth {
   async signUp(opts) {
     await this.validator.signUp(opts);
     const url = `/signUp`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceid) headers.serviceid = opts.serviceid;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
