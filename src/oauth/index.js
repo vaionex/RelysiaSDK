@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Oauth {
   constructor(auth) {
@@ -9,14 +9,15 @@ class Oauth {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * create Client
-   * @param {authToken}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async registerClient(opts) {
     await this.validate();
@@ -32,8 +33,8 @@ class Oauth {
 
   /**
    * get Client by key
-   * @param {key, authToken}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async getClientByKey(opts) {
     await this.validate();
@@ -49,8 +50,8 @@ class Oauth {
 
   /**
    * Update Client
-   * @param {authToken}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async updateClient(opts) {
     await this.validate();
@@ -66,8 +67,8 @@ class Oauth {
 
   /**
    * Get Client
-   * @param {authToken}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async getClient(opts) {
     await this.validate();
@@ -82,8 +83,8 @@ class Oauth {
 
   /**
    * Generate Access Code
-   * @param {}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async generateCode(opts) {
     await this.validate();
@@ -99,8 +100,8 @@ class Oauth {
 
   /**
    * Generate OAuth
-   * @param {}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async generateToken(opts) {
     await this.validate();

@@ -1,5 +1,5 @@
-const Request = require("../request");
-const validator = require("./validator");
+const Request = require('../request');
+const validator = require('./validator');
 
 class Auth {
   constructor(config) {
@@ -22,8 +22,8 @@ class Auth {
 
   /**
    * logged in and return token
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async auth(opts) {
     await this.validator.auth(opts);
@@ -40,8 +40,8 @@ class Auth {
 
   /**
    * create a user
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    **/
   async signUp(opts) {
     await this.validator.signUp(opts);
@@ -58,8 +58,8 @@ class Auth {
 
   /**
    * reset the pasword
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async resetPassword(opts) {
     await this.validator.resetPassword(opts);
@@ -73,8 +73,8 @@ class Auth {
 
   /**
    * send otp to provided email
-   * @param {from, to, message}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    **/
   async sendOtp(opts) {
     await this.validate();
@@ -94,8 +94,8 @@ class Auth {
 
   /**
    * validate the otp
-   * @param {to, otp}
-   * @returns {data: {status, msg, email}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async validateOtp(opts) {
     await this.validate();

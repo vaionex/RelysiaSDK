@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class FeeManager {
   constructor(auth) {
@@ -9,21 +9,22 @@ class FeeManager {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * setup your Fee Manager
-   * @param {mnemonic}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async initBeta(opts) {
     await this.validate();
     await this.validator.initBeta(opts);
     const url = `/initBeta`;
     const headers = {
-       authToken: this.auth.authToken
+      authToken: this.auth.authToken,
     };
     if (opts.mnemonic) headers.mnemonic = opts.mnemonic;
     const resp = this.request.getRequest(url, headers);
@@ -33,15 +34,15 @@ class FeeManager {
 
   /**
    * get all feeManager UTXOs
-   * @param { }
-   * @returns {}
+   *@param {object} opts
+   * @return {object}
    */
   async feeMetricesBeta() {
     await this.validate();
     const url = `/feeMetricesBeta`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -49,15 +50,15 @@ class FeeManager {
 
   /**
    * get all feeManager address
-   * @param { }
-   * @returns {}
+   *@param {object} opts
+   * @return {object}
    */
   async feeAddressBeta() {
     await this.validate();
     const url = `/feeAddressBeta`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -65,15 +66,15 @@ class FeeManager {
 
   /**
    * get all current state of fee Manager UTXOS
-   * @param { }
-   * @returns {}
+   *@param {object} opts
+   * @return {object}
    */
   async feeUtxoState() {
     await this.validate();
     const url = `/feeUtxoState`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     const resp = this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

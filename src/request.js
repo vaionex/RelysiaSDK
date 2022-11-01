@@ -1,11 +1,11 @@
-const { baseURL } = require("./config");
-const { default: axios } = require("axios");
+const {baseURL} = require('./config');
+const {default: axios} = require('axios');
 
 class Request {
   constructor() {
     this.headers = {
-      "content-type": "application/json",
-      accept: "application/json",
+      'content-type': 'application/json',
+      'accept': 'application/json',
     };
   }
 

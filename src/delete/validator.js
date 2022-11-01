@@ -1,9 +1,9 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.deletenotificationToken = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
+    walletID: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };

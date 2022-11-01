@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Transaction {
   constructor(auth) {
@@ -9,14 +9,15 @@ class Transaction {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * send transaction to peers
-   * @param { walletID, serviceID, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async send(opts) {
     await this.validate();
@@ -34,8 +35,8 @@ class Transaction {
 
   /**
    * return rawtx
-   * @param { walletID, serviceID, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param { object} opts is response object `{statusCode: 'string', data: 'object'}`
+   * @return {object}
    */
   async rawtx(opts) {
     await this.validate();
@@ -53,8 +54,8 @@ class Transaction {
 
   /**
    * withdraws coins from private key
-   * @param {serviceID, secretKey, privateKey, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async drop(opts) {
     await this.validate();
@@ -73,8 +74,8 @@ class Transaction {
 
   /**
    * create a swap offer
-   * @param {walletID, serviceID, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async offer(opts) {
     await this.validate();
@@ -92,8 +93,8 @@ class Transaction {
 
   /**
    * accept swap offers
-   * @param {walletID, serviceID, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async swap(opts) {
     await this.validate();
@@ -111,8 +112,8 @@ class Transaction {
 
   /**
    * create swap offer for exchange
-   * @param {walletID, serviceID, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async exchangeOffer(opts) {
     await this.validate();
@@ -130,8 +131,8 @@ class Transaction {
 
   /**
    * accept swap offer
-   * @param {serviceID, secretKey, privateKey, data}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async exchangeSwap(opts) {
     await this.validate();
@@ -149,8 +150,8 @@ class Transaction {
 
   /**
    * verifiy validity of offer
-   * @param  { data }
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async inspect(opts) {
     await this.validate();
@@ -166,8 +167,8 @@ class Transaction {
 
   /**
    * pay the invoices
-   * @param  { serviceID, secretKey, data }
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async pay(opts) {
     await this.validate();
@@ -185,8 +186,8 @@ class Transaction {
 
   /**
    * create the invoices
-   * @param  { serviceID, host, data }
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async invoice(opts) {
     await this.validate();
@@ -204,8 +205,8 @@ class Transaction {
 
   /**
    * create the invoices
-   * @param  { invoiceId }
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async paymentRequest(opts) {
     await this.validate();
@@ -221,8 +222,8 @@ class Transaction {
 
   /**
    * create the invoices
-   * @param  { invoiceId }
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async paymentRequestPay(opts) {
     await this.validate();

@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Notifications {
   constructor(auth) {
@@ -9,22 +9,23 @@ class Notifications {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * update notification token
-   * @param { userId,walletID, serviceid}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async notificationToken(opts) {
     await this.validate();
     await this.validator.notificationToken(opts);
     const url = `/notificationToken/${opts.userId}`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.putRequest(url, opts.data, headers);
@@ -34,16 +35,16 @@ class Notifications {
 
   /**
    * send a notification
-   * @param { userId,walletID, serviceid}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async sendNotification(opts) {
     await this.validate();
     await this.validator.sendNotification(opts);
     const url = `/sendNotification`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.serviceid) headers.serviceid = opts.serviceid;
     const resp = this.request.postRequest(url, opts.data, headers);

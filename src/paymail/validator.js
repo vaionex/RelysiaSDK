@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.paymailRequestParameter = async (opts) => {
@@ -14,7 +14,7 @@ validator.paymailPutRequest = async (opts) => {
     walletID: Joi.string().required(),
     serviceId: Joi.string().required(),
     data: Joi.object({
-      newPaymailId: Joi.string().allow("", null),
+      newPaymailId: Joi.string().allow('', null),
     }).required(),
   });
 
@@ -45,12 +45,12 @@ validator.bsvAddressRequest = async (opts) => {
   const schema = Joi.object({
     paymail: Joi.string().required(),
     data: Joi.object({
-      senderHandle: Joi.string().allow("", null),
-      dt: Joi.string().allow("", null),
-      signature: Joi.string().allow("", null),
+      senderHandle: Joi.string().allow('', null),
+      dt: Joi.string().allow('', null),
+      signature: Joi.string().allow('', null),
       amount: Joi.number(),
-      purpose: Joi.string().allow("", null),
-      senderName: Joi.string().allow("", null),
+      purpose: Joi.string().allow('', null),
+      senderName: Joi.string().allow('', null),
     }).required(),
   });
 
@@ -69,13 +69,13 @@ validator.bsvTransactionRequest = async (opts) => {
   const schema = Joi.object({
     paymail: Joi.string().required(),
     data: Joi.object({
-      hex: Joi.string().allow("", null),
-      reference: Joi.string().allow("", null),
+      hex: Joi.string().allow('', null),
+      reference: Joi.string().allow('', null),
       metadata: Joi.Object({
-        sender: Joi.string().allow("", null),
-        pubkey: Joi.string().allow("", null),
-        signature: Joi.string().allow("", null),
-        note: Joi.string().allow("", null),
+        sender: Joi.string().allow('', null),
+        pubkey: Joi.string().allow('', null),
+        signature: Joi.string().allow('', null),
+        note: Joi.string().allow('', null),
       }),
     }).required(),
   });

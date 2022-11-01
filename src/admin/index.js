@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Admin {
   constructor(auth) {
@@ -9,14 +9,15 @@ class Admin {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * Migrate Token
-   * @param { walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts - is opts
+   * @return {object} - is response object `{statusCode: 'string', data: 'object'}`
    */
   async migrateToken(opts) {
     await this.validate();
@@ -33,8 +34,8 @@ class Admin {
 
   /**
    * Generate a domain verification Token
-   * @param {userId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts - is options
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async generateToken(opts) {
     await this.validate();
@@ -51,8 +52,8 @@ class Admin {
 
   /**
    * verify domain ownership
-   * @param { userId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param { object} opts - is opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async verifyToken(opts) {
     await this.validate();
@@ -68,8 +69,8 @@ class Admin {
 
   /**
    * setup
-   * @param { userId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts - is options
+   * @return {object}
    */
   async setUp(opts) {
     await this.validate();
@@ -85,8 +86,8 @@ class Admin {
 
   /**
    * getSetupServiceId
-   * @param {serviceId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async getSetUpParameter(opts) {
     await this.validate();
@@ -102,8 +103,8 @@ class Admin {
 
   /**
    * putSetupParameter
-   * @param {serviceId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts - is options
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    */
   async putSetUpParameter(opts) {
     await this.validate();
@@ -119,8 +120,8 @@ class Admin {
 
   /**
    * deleteSetupParameter
-   * @param {serviceId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts - is options
+   * @return {object}
    */
   async deleteSetUpParameter(opts) {
     await this.validate();
@@ -136,8 +137,8 @@ class Admin {
 
   /**
    * getServiceIds
-   * @param {serviceId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async getServiceIds(opts) {
     await this.validate();

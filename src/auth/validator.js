@@ -1,9 +1,9 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.auth = async (opts) => {
   const schema = Joi.object({
-    serviceID: Joi.string().allow("", null),
+    serviceID: Joi.string().allow('', null),
     email: Joi.string().required(),
     password: Joi.string().required(),
   }).required();

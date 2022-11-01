@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Delete {
   constructor(auth) {
@@ -9,14 +9,15 @@ class Delete {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * delete user account
-   * @param {}
-   * @returns {}
+   * @param {object} opts
+   * @return {object}
    */
   async deleteUserAccount() {
     await this.validate();
@@ -31,8 +32,8 @@ class Delete {
 
   /**
    * delete all wallets
-   * @param {}
-   * @returns {}
+   *@param {object} opts
+   * @return {object}
    */
   async deleteAllWallets() {
     await this.validate();
@@ -47,8 +48,8 @@ class Delete {
 
   /**
    * update notification token
-   * @param { userId,walletID, serviceid}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async notificationToken(opts) {
     await this.validate();

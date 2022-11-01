@@ -1,18 +1,18 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.migrateToken = async (opts) => {
   const schema = Joi.object({
-    walletID: Joi.string().allow("", null),
+    walletID: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
 
 validator.generateToken = async (opts) => {
   const schema = Joi.object({
-    userId: Joi.string().allow("", null),
+    userId: Joi.string().allow('', null),
     data: Joi.object({
-      domain: Joi.string().allow("", null),
+      domain: Joi.string().allow('', null),
     }).required(),
   });
   await schema.validateAsync(opts);
@@ -21,7 +21,7 @@ validator.generateToken = async (opts) => {
 validator.verifyToken = async (opts) => {
   const schema = Joi.object({
     data: Joi.object({
-      domain: Joi.string().allow("", null),
+      domain: Joi.string().allow('', null),
     }).required(),
   });
   await schema.validateAsync(opts);
@@ -36,7 +36,7 @@ validator.setUp = async (opts) => {
 
 validator.getSetUpParameter = async (opts) => {
   const schema = Joi.object({
-    serviceId: Joi.string().allow("", null),
+    serviceId: Joi.string().allow('', null),
   });
   await schema.validateAsync(opts);
 };
@@ -50,9 +50,9 @@ validator.putSetUpParameter = async (opts) => {
 
 
 validator.deleteSetUpParameter = async (opts) => {
-    const schema = Joi.object({
-      serviceId: Joi.string().allow("", null),
-    });
-    await schema.validateAsync(opts);
-  };
+  const schema = Joi.object({
+    serviceId: Joi.string().allow('', null),
+  });
+  await schema.validateAsync(opts);
+};
 module.exports = validator;

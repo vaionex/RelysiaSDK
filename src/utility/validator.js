@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.uri = async (opts) => {
@@ -20,7 +20,7 @@ validator.transpile = async (opts) => {
   const schema = Joi.object({
     force: Joi.boolean(),
     data: Joi.object({
-      sourceCode: Joi.string().allow("", null),
+      sourceCode: Joi.string().allow('', null),
     }).required(),
   });
   await schema.validateAsync(opts);
@@ -51,8 +51,8 @@ validator.upload = async (opts) => {
     walletID: Joi.string().required(),
     serviceid: Joi.string().required(),
     data: Joi.object({
-      fileUrl: Joi.string().allow("", null),
-      fileName: Joi.string().allow("", null),
+      fileUrl: Joi.string().allow('', null),
+      fileName: Joi.string().allow('', null),
     }).required(),
   });
   await schema.validateAsync(opts);

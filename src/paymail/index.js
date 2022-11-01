@@ -1,5 +1,5 @@
-const validator = require("./validator");
-const Request = require("../request");
+const validator = require('./validator');
+const Request = require('../request');
 
 class Paymail {
   constructor(auth) {
@@ -9,14 +9,15 @@ class Paymail {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * get paymail
-   * @param  { paymailId, serviceId }
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async paymailRequest(opts) {
     await this.validate();
@@ -33,8 +34,8 @@ class Paymail {
 
   /**
    * put paymail
-   * @param  { walletID, serviceId }
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async putPaymailRequest(opts) {
     await this.validate();
@@ -52,8 +53,8 @@ class Paymail {
 
   /**
    * Activate and Deactivate paymail
-   * @param  { walletID}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async postPaymailRequest(opts) {
     await this.validate();
@@ -70,8 +71,8 @@ class Paymail {
 
   /**
    * bsvalias/id/{paymail}
-   * @param  {paymail}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async getPaymailBsv(opts) {
     await this.validate();
@@ -87,8 +88,8 @@ class Paymail {
 
   /**
    * bsvalias/address/{paymail}
-   * @param  {paymail}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async bsvAddressRequest(opts) {
     await this.validate();
@@ -104,8 +105,8 @@ class Paymail {
 
   /**
    * bsvalias/verifypubkey/{paymail}/{pubkey}
-   * @param  {paymail}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async bsvVerifypubkeyRequest(opts) {
     await this.validate();
@@ -121,8 +122,8 @@ class Paymail {
 
   /**
    * bsvalias/receive-transaction/{paymail}
-   * @param  {paymail}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    */
   async bsvTransactionRequest(opts) {
     await this.validate();
@@ -138,8 +139,8 @@ class Paymail {
 
   /**
    * bsvalias/p2p-payment-destination/{paymail}
-   * @param  {paymail}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    */
   async bsvP2PRequest(opts) {
     await this.validate();
@@ -155,8 +156,8 @@ class Paymail {
 
   /**
    * .well-known/bsvalias
-   * @param  {}
-   * @returns {}
+   *@param {object} opts
+   * @return {object}
    */
   async wellKnownBsv(opts) {
     await this.validate();

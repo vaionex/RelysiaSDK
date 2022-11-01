@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require('joi');
 const validator = {};
 
 validator.initBeta = async (opts) => {

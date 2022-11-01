@@ -1,5 +1,5 @@
-const Request = require("../request");
-const validator = require("./validator");
+const Request = require('../request');
+const validator = require('./validator');
 
 class Wallets {
   constructor(auth) {
@@ -9,24 +9,25 @@ class Wallets {
   }
 
   async validate() {
-    if (!this.auth.authToken)
-      throw new Error("You must logged In. Try calling auth() method first");
+    if (!this.auth.authToken) {
+      throw new Error('You must logged In. Try calling auth() method first');
+    }
   }
 
   /**
    * create a wallet
-   * @param {serviceId, walletTitle, walletLogo, type, walletPassword}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async createWallet(opts) {
     await this.validate();
     if (!opts) opts = {};
-    if (!opts.walletTitle) opts.walletTitle = "default";
+    if (!opts.walletTitle) opts.walletTitle = 'default';
     await this.validator.createWallet(opts);
     const url = `/createWallet`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
@@ -39,8 +40,8 @@ class Wallets {
 
   /**
    * shows detailed output of each utxo in wallet
-   * @param {serviceId, walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} - is response object `{statusCode: 'string', data: 'object'}`
    **/
   async metrics(opts) {
     await this.validate();
@@ -48,8 +49,8 @@ class Wallets {
     await this.validator.metrics(opts);
     const url = `/metrics`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -59,8 +60,8 @@ class Wallets {
 
   /**
    * return wallet address w.r.t walletId
-   * @param {serviceId, walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async address(opts) {
     await this.validate();
@@ -68,8 +69,8 @@ class Wallets {
     await this.validator.address(opts);
     const url = `/address`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -79,8 +80,8 @@ class Wallets {
 
   /**
    * return all wallet addresses
-   * @param {serviceId, walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async allAddresses(opts) {
     await this.validate();
@@ -88,8 +89,8 @@ class Wallets {
     await this.validator.allAddresses(opts);
     const url = `/allAddresses`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -99,8 +100,8 @@ class Wallets {
 
   /**
    * return coin & balances
-   * @param {serviceId, walletID, currency}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async balance(opts) {
     await this.validate();
@@ -108,8 +109,8 @@ class Wallets {
     await this.validator.balance(opts);
     const url = `/balance`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     if (opts.currency) headers.currency = opts.currency;
@@ -120,8 +121,8 @@ class Wallets {
 
   /**
    * return all past transactions histories
-   * @param {nextPageToken, serviceId, walletID, type}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async history(opts) {
     await this.validate();
@@ -129,8 +130,8 @@ class Wallets {
     await this.validator.history(opts);
     const url = `/history`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
@@ -142,8 +143,8 @@ class Wallets {
 
   /**
    * list all wallets
-   * @param {oauth, serviceId}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async wallets(opts) {
     await this.validate();
@@ -151,8 +152,8 @@ class Wallets {
     await this.validator.wallets(opts);
     const url = `/wallets`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.oauth) headers.oauth = opts.oauth;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = await this.request.getRequest(url, headers);
@@ -162,8 +163,8 @@ class Wallets {
 
   /**
    * return mnemonicPhrase data
-   * @param {serviceId, walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async mnemonic(opts) {
     await this.validate();
@@ -171,8 +172,8 @@ class Wallets {
     await this.validator.mnemonic(opts);
     const url = `/mnemonic`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.getRequest(url, headers);
@@ -182,8 +183,8 @@ class Wallets {
 
   /**
    * delete a wallet w.r.t walletId
-   * @param {walletID}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async deleteWallet(opts) {
     await this.validate();
@@ -191,10 +192,27 @@ class Wallets {
     await this.validator.deleteWallet(opts);
     const url = `/wallet`;
     const headers = {
-      authToken: this.auth.authToken
-   };
+      authToken: this.auth.authToken,
+    };
     if (opts.walletID) headers.walletID = opts.walletID;
     const resp = await this.request.deleteRequest(url, headers);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
+
+  /**
+   * get leaderboard of tokenId
+   * @param {string} tokenId - is id of fungible or non-fungible bsv token
+   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
+   */
+  async leaderBoard(tokenId) {
+    await this.validator.leaderboard(tokenId);
+    const url = `/leaderboard`;
+    const headers = {
+      authToken: this.auth.authToken,
+      tokenId,
+    };
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
