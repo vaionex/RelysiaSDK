@@ -2,11 +2,11 @@
   "name": "relysia",
   "version": "1.0.7",
   "description": "The official Relysia javascript SDK",
-  "main": "src/relysia-sdk.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha test/*.test.js && exit 0",
     "build": "npm run make:dir && npm run browserify",
-    "browserify": "browserify main.js --standalone RelysiaSDK > dist/relysia-sdk.js",
+    "browserify": "browserify index.js --standalone RelysiaSDK > dist/relysia-sdk.js",
     "lint": "npx eslint .",
     "lint:fix": "npx eslint . --fix",
     "make:dir": "mkdir -p dist"
