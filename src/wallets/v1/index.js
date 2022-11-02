@@ -101,7 +101,7 @@ class V1 {
   /**
    * return coin & balances
    * @param {object} opts
-   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
+   * @return {Promise<object>} is response object `{statusCode: 'string', data: 'object'}`
    **/
   async balance(opts) {
     await this.validate();
