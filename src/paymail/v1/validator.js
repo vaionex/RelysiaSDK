@@ -11,7 +11,7 @@ class Validator {
 
   async paymailPutRequest(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().required(),
+      walletId: Joi.string().required(),
       serviceId: Joi.string().required(),
       data: Joi.object({
         newPaymailId: Joi.string().allow('', null),
@@ -23,7 +23,7 @@ class Validator {
 
   async paymailPostRequest(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().required(),
+      walletId: Joi.string().required(),
       data: Joi.object({
         activate: Joi.boolean(),
       }).required(),

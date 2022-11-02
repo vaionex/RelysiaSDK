@@ -98,8 +98,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -117,8 +117,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceid) headers.serviceid = opts.serviceid;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

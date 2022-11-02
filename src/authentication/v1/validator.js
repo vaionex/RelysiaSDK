@@ -3,7 +3,7 @@ const Joi = require('joi');
 class Validator {
   async auth(opts) {
     const schema = Joi.object({
-      serviceID: Joi.string().allow('', null),
+      serviceId: Joi.string().allow('', null),
       email: Joi.string().required(),
       password: Joi.string().required(),
     }).required();

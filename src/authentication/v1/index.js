@@ -28,7 +28,7 @@ class V1 {
   async auth(opts) {
     await this.validator.auth(opts);
     const url = `/auth`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
@@ -46,7 +46,7 @@ class V1 {
   async signUp(opts) {
     await this.validator.signUp(opts);
     const url = `/signUp`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;

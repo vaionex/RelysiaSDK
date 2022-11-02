@@ -16,7 +16,7 @@ class Validator {
   async metrics(opts) {
     const schema = Joi.object({
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
   };
@@ -24,7 +24,7 @@ class Validator {
   async address(opts) {
     const schema = Joi.object({
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
   };
@@ -32,7 +32,7 @@ class Validator {
   async allAddresses(opts) {
     const schema = Joi.object({
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
   };
@@ -40,7 +40,7 @@ class Validator {
   async balance(opts) {
     const schema = Joi.object({
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
       currency: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
@@ -50,7 +50,7 @@ class Validator {
     const schema = Joi.object({
       nextPageToken: Joi.string().allow('', null),
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
       type: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
@@ -68,14 +68,14 @@ class Validator {
   async mnemonic(opts) {
     const schema = Joi.object({
       serviceId: Joi.string().allow('', null),
-      walletID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
     });
     await schema.validateAsync(opts);
   };
 
   async deleteWallet(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().required(),
+      walletId: Joi.string().required(),
     });
     await schema.validateAsync(opts);
   };

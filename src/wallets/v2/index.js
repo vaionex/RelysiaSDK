@@ -28,9 +28,13 @@ class V2 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.type) headers.type = opts.type;
     if (opts.currency) headers.currency = opts.currency;
-    const resp = await this.request.getRequest(url, headers);
+    if (opts.compact) headers.compact = opts.compact;
+    let query;
+    if (opts.nextPageToken) query = `?nextPageToken=${opts.nextPageToken}`;
+    const resp = await this.request.getRequest(url, {headers, query}, false, this.request.version.V2);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

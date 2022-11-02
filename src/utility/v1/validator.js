@@ -35,8 +35,8 @@ class Validator {
 
   async post(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().required(),
-      serviceid: Joi.string().required(),
+      walletId: Joi.string().required(),
+      serviceId: Joi.string().required(),
       data: Joi.object({
         dataArray: Joi.array().min(1).items({
           notes: Joi.array().required(),
@@ -48,8 +48,8 @@ class Validator {
 
   async upload(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().required(),
-      serviceid: Joi.string().required(),
+      walletId: Joi.string().required(),
+      serviceId: Joi.string().required(),
       data: Joi.object({
         fileUrl: Joi.string().allow('', null),
         fileName: Joi.string().allow('', null),

@@ -52,7 +52,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -72,7 +72,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -92,7 +92,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -112,7 +112,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.currency) headers.currency = opts.currency;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -134,7 +134,7 @@ class V1 {
     };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.type) headers.type = opts.type;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -175,7 +175,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -194,7 +194,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

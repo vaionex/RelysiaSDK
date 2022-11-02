@@ -19,8 +19,8 @@ class Validator {
 
   async redeem(opts) {
     const schema = Joi.object({
-      walletID: Joi.string().allow('', null),
-      serviceID: Joi.string().allow('', null),
+      walletId: Joi.string().allow('', null),
+      serviceId: Joi.string().allow('', null),
       data: Joi.object({
         dataArray: Joi.array().min(1).items({
           tokenId: Joi.string().required(),

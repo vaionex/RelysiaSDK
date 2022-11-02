@@ -26,8 +26,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -45,8 +45,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -64,7 +64,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     if (opts.secretKey) headers.secretKey = opts.secretKey;
     if (opts.privateKey) headers.privateKey = opts.privateKey;
     const resp = this.request.postRequest(url, opts.data, headers);
@@ -84,8 +84,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -103,8 +103,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -122,8 +122,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -141,8 +141,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -177,8 +177,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -197,7 +197,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.host) headers.host = opts.host;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

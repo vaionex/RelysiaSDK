@@ -58,7 +58,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletID) headers.walletID = opts.walletID;
+    if (opts.walletId) headers.walletId = opts.walletId;
     const resp = this.request.deleteRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
