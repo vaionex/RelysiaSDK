@@ -1,7 +1,7 @@
-const Request = require('../request');
+const Request = require('../../request');
 const validator = require('./validator');
 
-class Auth {
+class V1 {
   constructor(config) {
     this.authToken = config && config.authToken;
     this.validator = validator;
@@ -34,7 +34,7 @@ class Auth {
     data.password = opts.password;
     const resp = await this.request.postRequest(url, data);
     if (resp instanceof Error) throw resp;
-    setAuthToken(resp.data.token);
+    this.setAuthToken(resp.data.token);
     return resp.data;
   }
 
@@ -113,4 +113,4 @@ class Auth {
   }
 }
 
-module.exports = Auth;
+module.exports = V1;

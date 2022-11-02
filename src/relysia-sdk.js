@@ -1,4 +1,4 @@
-const Auth = require('./auth');
+const Authentication = require('./authentication');
 const User = require('./user');
 const Wallet = require('./wallets');
 const FeeManager = require('./feeManager');
@@ -6,13 +6,11 @@ const Utility = require('./utility');
 const Paymail = require('./paymail');
 const Notifications = require('./notifications');
 const Delete = require('./delete');
-const Admin = require('./admin');
 const Contracts = require('./contracts');
-const Oauth = require('./oauth');
 
 class RelysiaSDK {
   constructor(config) {
-    this.auth = new Auth(config);
+    this.authentication = new Authentication(config);
     this.user = new User(this.auth);
     this.wallet = new Wallet(this.auth);
     this.feeManager = new FeeManager(this.auth);

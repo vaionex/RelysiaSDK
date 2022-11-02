@@ -1,72 +1,8 @@
-const validator = require('./validator');
-const Request = require('../request');
-
+const V1 = require('./v1/index');
 class Contracts {
   constructor(auth) {
-    this.auth = auth;
-    this.validator = validator;
-    this.request = new Request();
-  }
-
-  async validate() {
-    if (!this.auth.authToken) {
-      throw new Error('You must logged In. Try calling auth() method first');
-    }
-  }
-
-  /**
-   * mint a token
-   *@param {object} opts
-   * @return {object}
-   */
-  async issue(opts) {
-    await this.validate();
-    await this.validator.issue(opts);
-    const url = `/issue`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.protocol) headers.protocol = opts.protocol;
-    const resp = await this.request.postRequest(url, opts.data, headers);
-    if (resp instanceof Error) throw resp;
-    return resp.data;
-  }
-  /**
-   * get stas token details
-   *@param {object} opts
-   * @return {object}
-   */
-  async tokenDetails(opts) {
-    await this.validate();
-    await this.validator.getTokenDetails(opts);
-    const url = `/token/${opts.id}`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
-    const resp = await this.request.getRequest(url, headers);
-    if (resp instanceof Error) throw resp;
-    return resp.data;
-  }
-
-  /**
-   * get stas token details
-   *@param {object} opts
-   * @return {object}
-   */
-  async redeem(opts) {
-    await this.validate();
-    await this.validator.redeem(opts);
-    const url = `/redeem`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
-    if (opts.walletID) headers.walletID = opts.walletID;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
-    const resp = await this.request.postRequest(url, opts.data, headers);
-    if (resp instanceof Error) throw resp;
-    return resp.data;
+    this.v1 = new V1(auth);
   }
 }
 
-module.exports= Contracts;
+module.exports = Contracts;

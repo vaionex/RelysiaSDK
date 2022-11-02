@@ -1,28 +1,8 @@
-const Request = require('../request');
+const V1 = require('./v1/index');
 
 class User {
   constructor(auth) {
-    this.auth = auth;
-    this.validator = validator;
-    this.request = new Request();
-  }
-
-  /**
-   * return current user
-   * @return {object} is response object `{statusCode: 'string', data: 'object'}`
-   */
-  async getUserDetails() {
-    if (!this.auth.authToken) {
-      throw new Error('You must logged In. Try calling auth() method first');
-    }
-    const url = `/user`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
-    const resp = await this.request.getRequest(url, headers);
-    if (resp instanceof Error) throw resp;
-    return resp.data;
+    this.v1 = new V1(auth);
   }
 }
-
 module.exports = User;
