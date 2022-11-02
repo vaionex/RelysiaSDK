@@ -15,7 +15,7 @@ class Request {
   }
 
 
-  async postRequest(reqPath, data, config, isAdmin, version = this.version.V1) {
+  async postRequest(reqPath, data, headers, isAdmin, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
       url += `/admin/${version}${reqPath}`;
@@ -25,7 +25,7 @@ class Request {
     const response = await axios.post(url, data, {
       headers: {
         ...this.headers,
-        ...config,
+        ...headers,
       },
     });
     if (response.status < 400) {
@@ -37,7 +37,7 @@ class Request {
     }
   }
 
-  async putRequest(reqPath, data, config, isAdmin, version = this.version.V1) {
+  async putRequest(reqPath, data, headers, isAdmin, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
       url += `/admin/${version}${reqPath}`;
@@ -47,7 +47,7 @@ class Request {
     const response = await axios.put(url, data, {
       headers: {
         ...this.headers,
-        ...config,
+        ...headers,
       },
     });
     if (response.status < 400) {
@@ -59,7 +59,7 @@ class Request {
     }
   }
 
-  async getRequest(reqPath, config, isAdmin, version = this.version.V1) {
+  async getRequest(reqPath, headers, isAdmin, query, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
       url += `/admin/${version}${reqPath}`;
@@ -67,14 +67,14 @@ class Request {
       url += `/${version}${reqPath}`;
     }
 
-    if (config.query) {
-      url += config.query;
+    if (query) {
+      url += query;
     }
 
     const response = await axios.get(url, {
       headers: {
         ...this.headers,
-        ...config.headers,
+        ...headers,
       },
     });
     if (response.status < 400) {

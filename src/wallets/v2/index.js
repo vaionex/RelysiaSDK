@@ -34,7 +34,7 @@ class V2 {
     if (opts.compact) headers.compact = opts.compact;
     let query;
     if (opts.nextPageToken) query = `?nextPageToken=${opts.nextPageToken}`;
-    const resp = await this.request.getRequest(url, {headers, query}, false, this.request.version.V2);
+    const resp = await this.request.getRequest(url, headers, false, query, this.request.version.V2);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

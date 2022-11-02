@@ -15,6 +15,7 @@
       "new-cap":"off",
       "no-invalid-this":"off",
       "require-jsdoc": "off",
-      "max-len":"off"
+      "max-len":"off",
+      "no-console":"error"
     }
 }

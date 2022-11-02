@@ -11,17 +11,15 @@ const Contracts = require('./contracts');
 class RelysiaSDK {
   constructor(config) {
     this.authentication = new Authentication(config);
-    this.user = new User(this.auth);
-    this.wallet = new Wallet(this.auth);
-    this.feeManager = new FeeManager(this.auth);
-    this.utility = new Utility(this.auth);
-    this.paymail = new Paymail(this.auth);
-    this.notifications = new Notifications(this.auth);
-    this.delete = new Delete(this.auth);
-    this.admin = new Admin(this.auth);
-    this.paymail = new Paymail(this.auth);
-    this.oauth = new Oauth(this.auth);
-    this.contracts = new Contracts(this.auth);
+    this.user = new User(this.authentication.auth);
+    this.wallet = new Wallet(this.authentication.auth);
+    this.feeManager = new FeeManager(this.authentication.auth);
+    this.utility = new Utility(this.authentication.auth);
+    this.paymail = new Paymail(this.authentication.auth);
+    this.notifications = new Notifications(this.authentication.auth);
+    this.delete = new Delete(this.authentication.auth);
+    this.paymail = new Paymail(this.authentication.auth);
+    this.contracts = new Contracts(this.authentication.auth);
   }
 }
 
