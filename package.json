@@ -5,9 +5,11 @@
   "main": "src/relysia-sdk.js",
   "scripts": {
     "test": "mocha test/*.test.js && exit 0",
+    "build": "npm run make:dir && npm run browserify",
     "browserify": "browserify main.js --standalone RelysiaSDK > dist/relysia-sdk.js",
     "lint": "npx eslint .",
-    "lint:fix": "npx eslint . --fix"
+    "lint:fix": "npx eslint . --fix",
+    "make:dir": "mkdir -p dist"
   },
   "repository": {
     "type": "git",
