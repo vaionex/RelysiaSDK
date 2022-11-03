@@ -1,7 +1,7 @@
-const Request = require("../request");
-const validator = require("./validator");
+const Request = require('../../request');
+const validator = require('./validator');
 
-class Auth {
+class V1 {
   constructor(config) {
     this.authToken = config && config.authToken;
     this.validator = validator;
@@ -22,31 +22,31 @@ class Auth {
 
   /**
    * logged in and return token
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async auth(opts) {
     await this.validator.auth(opts);
     const url = `/auth`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
     const resp = await this.request.postRequest(url, data);
     if (resp instanceof Error) throw resp;
-    setAuthToken(resp.data.token);
+    this.setAuthToken(resp.data.token);
     return resp.data;
   }
 
   /**
    * create a user
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    **/
   async signUp(opts) {
     await this.validator.signUp(opts);
     const url = `/signUp`;
-    if (opts.serviceID) headers.serviceID = opts.serviceID;
+    if (opts.serviceId) headers.serviceId = opts.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
@@ -58,8 +58,8 @@ class Auth {
 
   /**
    * reset the pasword
-   * @param {email, password}
-   * @returns {data: {status, msg}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async resetPassword(opts) {
     await this.validator.resetPassword(opts);
@@ -73,8 +73,8 @@ class Auth {
 
   /**
    * send otp to provided email
-   * @param {from, to, message}
-   * @returns {data: {status, msg}, statusCode}
+   *@param {object} opts
+   * @return {object}
    **/
   async sendOtp(opts) {
     await this.validate();
@@ -94,8 +94,8 @@ class Auth {
 
   /**
    * validate the otp
-   * @param {to, otp}
-   * @returns {data: {status, msg, email}, statusCode}
+   * @param {object} opts
+   * @return {object}
    **/
   async validateOtp(opts) {
     await this.validate();
@@ -113,4 +113,4 @@ class Auth {
   }
 }
 
-module.exports = Auth;
+module.exports = V1;

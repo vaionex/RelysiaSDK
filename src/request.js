@@ -1,25 +1,31 @@
-const { baseURL } = require("./config");
-const { default: axios } = require("axios");
+const {baseURL} = require('./config');
+const {default: axios} = require('axios');
 
 class Request {
   constructor() {
     this.headers = {
-      "content-type": "application/json",
-      accept: "application/json",
+      'content-type': 'application/json',
+      'accept': 'application/json',
+    };
+
+    this.version = {
+      V1: 'v1',
+      V2: 'v2',
     };
   }
 
-  async postRequest(reqUrl, data, config, isAdmin) {
+
+  async postRequest(reqPath, data, headers, isAdmin, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
-      url += `/admin/v1${reqUrl}`;
+      url += `/admin/${version}${reqPath}`;
     } else {
-      url += `/v1${reqUrl}`;
+      url += `/${version}${reqPath}`;
     }
     const response = await axios.post(url, data, {
       headers: {
         ...this.headers,
-        ...config,
+        ...headers,
       },
     });
     if (response.status < 400) {
@@ -31,17 +37,17 @@ class Request {
     }
   }
 
-  async putRequest(reqUrl, data, config, isAdmin) {
+  async putRequest(reqPath, data, headers, isAdmin, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
-      url += `/admin/v1${reqUrl}`;
+      url += `/admin/${version}${reqPath}`;
     } else {
-      url += `/v1${reqUrl}`;
+      url += `/${version}${reqPath}`;
     }
     const response = await axios.put(url, data, {
       headers: {
         ...this.headers,
-        ...config,
+        ...headers,
       },
     });
     if (response.status < 400) {
@@ -53,17 +59,22 @@ class Request {
     }
   }
 
-  async getRequest(reqUrl, config, isAdmin) {
+  async getRequest(reqPath, headers, isAdmin, query, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
-      url += `/admin/v1${reqUrl}`;
+      url += `/admin/${version}${reqPath}`;
     } else {
-      url += `/v1${reqUrl}`;
+      url += `/${version}${reqPath}`;
     }
+
+    if (query) {
+      url += query;
+    }
+
     const response = await axios.get(url, {
       headers: {
         ...this.headers,
-        ...config,
+        ...headers,
       },
     });
     if (response.status < 400) {
@@ -75,12 +86,12 @@ class Request {
     }
   }
 
-  async deleteRequest(reqUrl, config, isAdmin) {
+  async deleteRequest(reqPath, config, isAdmin, version = this.version.V1) {
     let url = baseURL;
     if (isAdmin) {
-      url += `/admin/v1${reqUrl}`;
+      url += `/admin/${version}${reqPath}`;
     } else {
-      url += `/v1${reqUrl}`;
+      url += `/${version}${reqPath}`;
     }
     const response = await axios.delete(url, {
       headers: {
