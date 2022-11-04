@@ -1,5 +1,5 @@
-const validator = require('./v1/validator');
-const Request = require('../request');
+const validator = require('./validator');
+const Request = require('./../../request');
 
 class V1 {
   constructor(auth) {
@@ -26,8 +26,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -45,8 +45,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -64,9 +64,9 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
-    if (opts.secretKey) headers.secretKey = opts.secretKey;
-    if (opts.privateKey) headers.privateKey = opts.privateKey;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.secretKey) headers.secretKey = opts.secretKey;
+    if (opts?.privateKey) headers.privateKey = opts.privateKey;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -84,8 +84,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -103,8 +103,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -122,8 +122,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -141,8 +141,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -177,8 +177,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.walletId) headers.walletId = opts.walletId;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -196,8 +196,8 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.host) headers.host = opts.host;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (opts?.host) headers.host = opts.host;
+    if (opts?.serviceId) headers.serviceId = opts.serviceId;
     const resp = this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
