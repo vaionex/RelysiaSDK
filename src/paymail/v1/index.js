@@ -19,9 +19,9 @@ class V1 {
    *@param {object} opts
    * @return {object}
    */
-  async paymailRequest(opts) {
+  async getPaymailDetails(opts) {
     await this.validate();
-    await this.validator.paymailRequestParameter(opts);
+    await this.validator.getPaymail(opts);
     const url = `/paymail/${opts.paymailId}`;
     const headers = {
       authToken: this.auth.authToken,
@@ -37,9 +37,9 @@ class V1 {
    * @param {object} opts
    * @return {object}
    */
-  async putPaymailRequest(opts) {
+  async updatePaymail(opts) {
     await this.validate();
-    await this.validator.paymailPutRequest(opts);
+    await this.validator.updatePaymail(opts);
     const url = `/paymail`;
     const headers = {
       authToken: this.auth.authToken,
@@ -56,9 +56,9 @@ class V1 {
    *@param {object} opts
    * @return {object}
    */
-  async postPaymailRequest(opts) {
+  async activatePaymail(opts) {
     await this.validate();
-    await this.validator.paymailPostRequest(opts);
+    await this.validator.activatePaymail(opts);
     const url = `/paymail/${opts.activate}`;
     const headers = {
       authToken: this.auth.authToken,
