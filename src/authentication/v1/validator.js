@@ -14,6 +14,8 @@ class Validator {
     const schema = Joi.object({
       email: Joi.string().required(),
       password: Joi.string().required(),
+      displayName: Joi.string(),
+      photo: Joi.string(),
     }).required();
     await schema.validateAsync(opts);
   };
