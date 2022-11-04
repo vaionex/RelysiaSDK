@@ -50,9 +50,12 @@ class V1 {
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
+    if (opts.photo) data.photo = opts.photo;
+    if (opts.displayName) data.displayName = opts.displayName;
+
     const resp = await this.request.postRequest(url, data);
     if (resp instanceof Error) throw resp;
-    setAuthToken(resp.data.token);
+    this.setAuthToken(resp.data.token);
     return resp.data;
   }
 
