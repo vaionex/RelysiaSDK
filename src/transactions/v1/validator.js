@@ -4,12 +4,15 @@ const Joi = require('joi');
 class Validator {
   async send(opts) {
     const schema = Joi.object({
-      walletId: Joi.string().allow('', null),
-      serviceId: Joi.string().allow('', null),
+      walletId: Joi.string(),
+      serviceId: Joi.string(),
       data: Joi.object({
         dataArray: Joi.array().min(1).items({
           to: Joi.string().required(),
           amount: Joi.number().required(),
+          tokenId: Joi.string(),
+          sn: Joi.string(),
+          notes: Joi.string(),
         }),
       }).required(),
     });
@@ -18,12 +21,14 @@ class Validator {
 
   async rawtx(opts) {
     const schema = Joi.object({
-      walletId: Joi.string().allow('', null),
-      serviceId: Joi.string().allow('', null),
+      walletId: Joi.string(),
+      serviceId: Joi.string(),
       data: Joi.object({
         dataArray: Joi.array().min(1).items({
           to: Joi.string().required(),
           amount: Joi.number().required(),
+          tokenId: Joi.string(),
+          sn: Joi.string(),
         }),
       }).required(),
     });
@@ -32,18 +37,18 @@ class Validator {
 
   async drop(opts) {
     const schema = Joi.object({
-      serviceId: Joi.string().allow('', null),
-      secretKey: Joi.string().allow('', null),
-      privateKey: Joi.string().allow('', null),
+      serviceId: Joi.string(),
+      secretKey: Joi.string().required(),
+      privateKey: Joi.string().required(),
       data: Joi.object({
         dataArray: Joi.array()
             .min(1)
             .items({
               to: Joi.string().allow('', null),
               amount: Joi.number().required(),
-              notes: Joi.string().allow('', null),
-              tokenId: Joi.string().allow('', null),
-              sn: Joi.string().allow('', null),
+              notes: Joi.string(),
+              tokenId: Joi.string(),
+              sn: Joi.string(),
             }),
       }).required(),
     });
@@ -52,16 +57,16 @@ class Validator {
 
   async offer(opts) {
     const schema = Joi.object({
-      walletId: Joi.string().allow('', null),
-      serviceId: Joi.string().allow('', null),
+      walletId: Joi.string(),
+      serviceId: Joi.string(),
       data: Joi.object({
         dataArray: Joi.array()
             .min(1)
             .items({
-              type: Joi.string().allow('', null),
-              amount: Joi.number().min(0.00000001).required(),
-              tokenId: Joi.string().allow('', null),
-              sn: Joi.string().allow('', null),
+              type: Joi.string().required(),
+              amount: Joi.number().required(),
+              tokenId: Joi.string().required(),
+              sn: Joi.string().required(),
             }),
       }).required(),
     });
@@ -89,10 +94,10 @@ class Validator {
         dataArray: Joi.array()
             .min(1)
             .items({
-              type: Joi.string().allow('', null),
+              type: Joi.string().required(),
               amount: Joi.number().min(0.00000001).required(),
-              tokenId: Joi.string().allow('', null),
-              sn: Joi.string().allow('', null),
+              tokenId: Joi.string().required(),
+              sn: Joi.string().required(),
               payment: Joi.array()
                   .max(2)
                   .items({
@@ -107,8 +112,8 @@ class Validator {
 
   async exchangeSwap(opts) {
     const schema = Joi.object({
-      walletId: Joi.string().allow('', null),
-      serviceId: Joi.string().allow('', null),
+      walletId: Joi.string(),
+      serviceId: Joi.string(),
       data: Joi.object({
         dataArray: Joi.array().min(1).items({
           swapId: Joi.string().required(),
@@ -131,8 +136,8 @@ class Validator {
 
   async pay(opts) {
     const schema = Joi.object({
-      serviceId: Joi.string().allow('', null),
-      walletId: Joi.string().allow('', null),
+      serviceId: Joi.string(),
+      walletId: Joi.string(),
       data: Joi.object().required(),
     });
     await schema.validateAsync(opts);
@@ -140,8 +145,7 @@ class Validator {
 
   async invoice(opts) {
     const schema = Joi.object({
-      host: Joi.string().allow('', null),
-      serviceId: Joi.string().allow('', null),
+      serviceId: Joi.string(),
       data: Joi.object({
         type: Joi.string().allow('', null),
         amount: Joi.number().required(),
