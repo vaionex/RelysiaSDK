@@ -25,7 +25,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.deleteRequest(url, headers);
+    const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -41,7 +41,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.deleteRequest(url, headers);
+    const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -59,7 +59,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.walletId) headers.walletId = opts.walletId;
-    const resp = this.request.deleteRequest(url, opts.data, headers);
+    const resp = await this.request.deleteRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

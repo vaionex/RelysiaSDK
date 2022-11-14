@@ -28,7 +28,7 @@ class V1 {
     };
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    const resp = this.request.putRequest(url, opts.data, headers);
+    const resp = await this.request.putRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -47,7 +47,7 @@ class V1 {
     };
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.serviceId) headers.serviceId = opts.serviceId;
-    const resp = this.request.postRequest(url, opts.data, headers);
+    const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
