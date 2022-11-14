@@ -27,7 +27,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.mnemonic) headers.mnemonic = opts.mnemonic;
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -43,7 +43,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -59,7 +59,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -75,7 +75,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    const resp = this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
