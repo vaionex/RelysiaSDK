@@ -2,8 +2,9 @@ const Request = require('./../../request');
 const validator = require('./validator');
 
 class V2 {
-  constructor(auth) {
+  constructor(auth, serviceId) {
     this.auth = auth;
+    this.serviceId = serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -27,7 +28,7 @@ class V2 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.type) headers.type = opts.type;
     if (opts.currency) headers.currency = opts.currency;

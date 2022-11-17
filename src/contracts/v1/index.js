@@ -2,8 +2,9 @@ const validator = require('./validator');
 const Request = require('../../request');
 
 class V1 {
-  constructor(auth) {
+  constructor(auth, serviceId) {
     this.auth = auth;
+    this.serviceId = serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -26,7 +27,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.protocol) headers.protocol = opts.protocol;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
@@ -62,7 +63,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

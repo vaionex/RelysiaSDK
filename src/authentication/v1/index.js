@@ -3,7 +3,8 @@ const validator = require('./validator');
 
 class V1 {
   constructor(config) {
-    this.authToken = config && config.authToken;
+    this.authToken = config.authToken;
+    this.serviceId = config.serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -28,7 +29,8 @@ class V1 {
   async auth(opts) {
     await this.validator.auth(opts);
     const url = `/auth`;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    const headers = {};
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
@@ -46,14 +48,15 @@ class V1 {
   async signUp(opts) {
     await this.validator.signUp(opts);
     const url = `/signUp`;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    const headers = {};
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const data = {};
     data.email = opts.email;
     data.password = opts.password;
     if (opts.photo) data.photo = opts.photo;
     if (opts.displayName) data.displayName = opts.displayName;
 
-    const resp = await this.request.postRequest(url, data);
+    const resp = await this.request.postRequest(url, data, headers);
     if (resp instanceof Error) throw resp;
     this.setAuthToken(resp.data.token);
     return resp.data;
@@ -68,8 +71,10 @@ class V1 {
     await this.validator.resetPassword(opts);
     const url = `/reset/password`;
     const data = {};
+    const headers = {};
+    if (this.serviceId) headers.serviceId = this.serviceId;
     data.email = opts.email;
-    const resp = await this.request.postRequest(url, data);
+    const resp = await this.request.postRequest(url, data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
@@ -86,6 +91,7 @@ class V1 {
     const headers = {
       authToken: this.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const data = {};
     data.from = opts.from;
     data.to = opts.to;
@@ -107,6 +113,7 @@ class V1 {
     const headers = {
       authToken: this.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const data = {};
     data.to = opts.to;
     data.otp = opts.otp;

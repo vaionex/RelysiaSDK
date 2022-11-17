@@ -12,15 +12,15 @@ const Transaction = require('./transactions/index');
 class RelysiaSDK {
   constructor(config) {
     this.authentication = new Authentication(config);
-    this.contracts = new Contracts(this.authentication.auth);
-    this.delete = new Delete(this.authentication.auth);
-    this.feeManager = new FeeManager(this.authentication.auth);
-    this.notification = new Notifications(this.authentication.auth);
-    this.paymail = new Paymail(this.authentication.auth);
-    this.transaction = new Transaction(this.authentication.auth),
-    this.user = new User(this.authentication.auth);
-    this.utility = new Utility(this.authentication.auth);
-    this.wallet = new Wallet(this.authentication.auth);
+    this.contracts = new Contracts(this.authentication.auth, config?.serviceId);
+    this.delete = new Delete(this.authentication.auth, config?.serviceId);
+    this.feeManager = new FeeManager(this.authentication.auth, config?.serviceId);
+    this.notification = new Notifications(this.authentication.auth, config?.serviceId);
+    this.paymail = new Paymail(this.authentication.auth, config?.serviceId);
+    this.transaction = new Transaction(this.authentication.auth, config?.serviceId),
+    this.user = new User(this.authentication.auth, config?.serviceId);
+    this.utility = new Utility(this.authentication.auth, config?.serviceId);
+    this.wallet = new Wallet(this.authentication.auth, config?.serviceId);
   }
 }
 
