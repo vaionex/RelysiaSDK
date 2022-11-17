@@ -2,8 +2,9 @@ const validator = require('./validator');
 const Request = require('../../request');
 
 class V1 {
-  constructor(auth) {
+  constructor(auth, serviceId) {
     this.auth = auth;
+    this.serviceId = serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -26,6 +27,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.mnemonic) headers.mnemonic = opts.mnemonic;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -43,6 +45,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -59,6 +62,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -75,6 +79,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

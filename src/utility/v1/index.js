@@ -2,8 +2,9 @@ const validator = require('./validator');
 const Request = require('../../request');
 
 class V1 {
-  constructor(auth) {
+  constructor(auth, serviceId) {
     this.auth = auth;
+    this.serviceId = serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -23,9 +24,6 @@ class V1 {
     await this.validate();
     await this.validator.uri(opts);
     const url = `/URI`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
     if (opts.uri) headers.uri = opts.uri;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -41,9 +39,7 @@ class V1 {
     await this.validate();
     await this.validator.currencyConversion(opts);
     const url = `/currencyConversion`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
+    const headers = {};
     if (opts.satoshis) headers.satoshis = opts.satoshis;
     if (opts.currency) headers.currency = opts.currency;
     const resp = await this.request.getRequest(url, headers);
@@ -60,9 +56,7 @@ class V1 {
     await this.validate();
     await this.validator.transpile(opts);
     const url = `/transpile`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
+    const headers = {};
     if (opts.force) headers.force = opts.force;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
@@ -78,9 +72,7 @@ class V1 {
     await this.validate();
     await this.validator.compile(opts);
     const url = `/compile`;
-    const headers = {
-      authToken: this.auth.authToken,
-    };
+    const headers = {};
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -99,7 +91,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -118,7 +110,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.walletId) headers.walletId = opts.walletId;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.postRequest(url, opts.data, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;

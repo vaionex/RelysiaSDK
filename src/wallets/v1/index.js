@@ -2,8 +2,9 @@ const Request = require('./../../request');
 const validator = require('./validator');
 
 class V1 {
-  constructor(auth) {
+  constructor(auth, serviceId) {
     this.auth = auth;
+    this.serviceId = serviceId;
     this.validator = validator;
     this.request = new Request();
   }
@@ -28,7 +29,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletTitle) headers.walletTitle = opts.walletTitle;
     if (opts.type) headers.type = opts.type;
     if (opts.walletLogo) headers.walletLogo = opts.walletLogo;
@@ -51,7 +52,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -71,7 +72,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -91,7 +92,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -111,7 +112,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.currency) headers.currency = opts.currency;
     const resp = await this.request.getRequest(url, headers);
@@ -133,7 +134,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.type) headers.type = opts.type;
     const resp = await this.request.getRequest(url, headers);
@@ -155,7 +156,7 @@ class V1 {
       authToken: this.auth.authToken,
     };
     if (opts.oauth) headers.oauth = opts.oauth;
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
@@ -174,7 +175,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.serviceId) headers.serviceId = opts.serviceId;
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -194,6 +195,7 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     const resp = await this.request.deleteRequest(url, headers);
     if (resp instanceof Error) throw resp;
@@ -212,6 +214,7 @@ class V1 {
       authToken: this.auth.authToken,
       tokenId: opts.tokenId,
     };
+    if (this.serviceId) headers.serviceId = this.serviceId;
     const resp = await this.request.getRequest(url, headers);
     if (resp instanceof Error) throw resp;
     return resp.data;
