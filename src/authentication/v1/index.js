@@ -3,8 +3,8 @@ const validator = require('./validator');
 
 class V1 {
   constructor(config) {
-    this.authToken = config.authToken;
-    this.serviceId = config.serviceId;
+    this.authToken = config?.authToken;
+    this.serviceId = config?.serviceId;
     this.validator = validator;
     this.request = new Request();
   }
