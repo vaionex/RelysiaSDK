@@ -214,8 +214,10 @@ class V1 {
       authToken: this.auth.authToken,
       tokenId: opts.tokenId,
     };
-    if (this.serviceId) headers.serviceId = this.serviceId;
-    const resp = await this.request.getRequest(url, headers);
+    if (this?.serviceId) headers.serviceId = this.serviceId;
+    let query;
+    if(opts?.nextPageToken) query = `?nextPageToken=${opts.nextPageToken}`
+    const resp = await this.request.getRequest(url, headers, undefined, query);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }

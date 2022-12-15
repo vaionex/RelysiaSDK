@@ -83,6 +83,7 @@ class Validator {
   async leaderboard(opts) {
     const schema = Joi.object({
       tokenId: Joi.string().required(),
+      nextPageToken: Joi.string(),
     });
     await schema.validateAsync(opts);
   };
