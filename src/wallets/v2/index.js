@@ -39,6 +39,30 @@ class V2 {
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
+
+
+   /**
+   * return all past transactions histories
+   * @param {object} opts
+   * @return {object}
+   **/
+   async history(opts) {
+    await this.validate();
+    if (!opts) opts = {};
+    await this.validator.history(opts);
+    const url = `/history`;
+    const headers = {
+      authToken: this.auth.authToken,
+    };
+    let query;
+    if (opts.nextPageToken) query = `?nextPageToken=${opts.nextPageToken}`;
+    if (this.serviceId) headers.serviceId = this.serviceId;
+    if (opts.walletId) headers.walletId = opts.walletId;
+    if (opts.type) headers.type = opts.type;
+    const resp = await this.request.getRequest(url, headers, undefined, query, this.request.version.V2);
+    if (resp instanceof Error) throw resp;
+    return resp.data;
+  }
 }
 
 module.exports = V2;
