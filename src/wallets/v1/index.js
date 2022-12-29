@@ -133,11 +133,12 @@ class V1 {
     const headers = {
       authToken: this.auth.authToken,
     };
-    if (opts.nextPageToken) headers.nextPageToken = opts.nextPageToken;
+    let query;
+    if (opts.nextPageToken) query =`nextPageToken=${opts.nextPageToken}`;
     if (this.serviceId) headers.serviceId = this.serviceId;
     if (opts.walletId) headers.walletId = opts.walletId;
     if (opts.type) headers.type = opts.type;
-    const resp = await this.request.getRequest(url, headers);
+    const resp = await this.request.getRequest(url, headers, undefined, query);
     if (resp instanceof Error) throw resp;
     return resp.data;
   }
